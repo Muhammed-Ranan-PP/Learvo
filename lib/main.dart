@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:learvo/screens/login_screen.dart';
-import 'package:learvo/screens/splash_screen.dart';
+import 'package:learvo/routes/app_routes.dart';
+import 'package:learvo/theme/app_theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +14,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-       home: LoginScreen(),
+      theme: AppTheme.lightTheme,
+      routes: AppRoutes.routes,
+       initialRoute: AppRoutes.splash,
     );
   }
 }

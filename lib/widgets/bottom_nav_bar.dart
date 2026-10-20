@@ -15,7 +15,7 @@ class BottomNavBar extends StatelessWidget {
       (Icons.home_outlined,"Home"),
       (Icons.calendar_month_outlined,"Schedule"),
       (Icons.show_chart,"Progress"),
-      (Icons.person_outline,"Schedule"),
+      (Icons.person_outline,"Profile"),
     ];
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10),

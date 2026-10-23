@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:learvo/screens/add_task_screen.dart';
+import 'package:learvo/screens/notes_screen.dart';
 import 'package:learvo/widgets/bottom_nav_bar.dart';
 import 'package:learvo/widgets/task_card.dart';
 
@@ -180,28 +181,28 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               SizedBox(height: 2),
               TaskCard(
-  title: "Maths - Chapter 4",
-  time: "09:00 AM - 10:30 AM",
-  icon: Icons.calculate_outlined,
-  iconColor: Color(0xFF168BFF),
-  statusColor: Color(0xFF16A34A),
-),
-              SizedBox(height: 2),
-            TaskCard(
-  title: "Maths - Chapter 4",
-  time: "09:00 AM - 10:30 AM",
-  icon: Icons.calculate_outlined,
-  iconColor: Color(0xFF168BFF),
-  statusColor: Color(0xFF16A34A),
-),
+                title: "Physics - Numericals",
+                time: "11:00 AM - 12:00 PM",
+                icon: Icons.biotech,
+                iconColor: Color(0xFF8B5CF6),
+                statusColor: Color(0xFFCBD5E1),
+              ),
               SizedBox(height: 2),
               TaskCard(
-  title: "Maths - Chapter 4",
-  time: "09:00 AM - 10:30 AM",
-  icon: Icons.calculate_outlined,
-  iconColor: Color(0xFF168BFF),
-  statusColor: Color(0xFF16A34A),
-),
+                title: "English - Essay Writing",
+                time: "02:00 PM - 03:00 PM",
+                icon: Icons.menu_book_outlined,
+                iconColor: Color(0xFFDC2626),
+                statusColor: Color(0xFFCBD5E1),
+              ),
+              SizedBox(height: 2),
+              TaskCard(
+                title: "Chemistry - Revision",
+                time: "05:00 PM - 06:00 PM",
+                icon: Icons.science_outlined,
+                iconColor: Color(0xFFEAB308),
+                statusColor: Color(0xFFCBD5E1),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -215,38 +216,49 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       child: Align(
                         alignment: Alignment.centerLeft,
-                        child: Container(
-                          width: 160,
-                          height: 95,
-                          padding: const EdgeInsets.all(12),
-                          decoration: BoxDecoration(
-                            color: Color(0xFFDCEBFF),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Icon(
-                                Icons.description_outlined,
-                                color: Color(0xFF1A2856),
-                                size: 24,
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(12),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => NotesScreen(),
                               ),
-                              Text(
-                                "My Notes",
-                                style: TextStyle(
+                            );
+                          },
+                          child: Container(
+                            width: 160,
+                            height: 95,
+                            padding: const EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                              color: Color(0xFFDCEBFF),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Icon(
+                                  Icons.description_outlined,
                                   color: Color(0xFF1A2856),
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
+                                  size: 24,
                                 ),
-                              ),
-                              Text(
-                                "Access your notes",
-                                style: TextStyle(
-                                  color: Color(0xFF64748B),
-                                  fontSize: 11,
+                                Text(
+                                  "My Notes",
+                                  style: TextStyle(
+                                    color: Color(0xFF1A2856),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),
-                            ],
+                                Text(
+                                  "Access your notes",
+                                  style: TextStyle(
+                                    color: Color(0xFF64748B),
+                                    fontSize: 11,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learvo/screens/add_task_screen.dart';
-import 'package:learvo/screens/notes_screen.dart';
+import 'package:learvo/routes/app_routes.dart';
 import 'package:learvo/widgets/bottom_nav_bar.dart';
 import 'package:learvo/widgets/task_card.dart';
 
@@ -24,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.all(20.0),
+                      padding:  EdgeInsets.all(20.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -69,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(8.0),
                 child: Container(
                   width: double.infinity,
                   height: 180,
@@ -81,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 25, top: 15),
+                        padding: EdgeInsets.only(left: 25, top: 15),
                         child: Text(
                           "Today's Progress",
                           style: TextStyle(
@@ -94,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Row(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(left: 30, top: 20),
+                            padding:  EdgeInsets.only(left: 30, top: 20),
                             child: SizedBox(
                               width: 85,
                               height: 85,
@@ -103,8 +102,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 children: [
                                   CircularProgressIndicator(
                                     value: 0.65,
-                                    strokeWidth: 7,
+                                    strokeWidth: 6.5,
                                     constraints: BoxConstraints.expand(),
+                                    color: Color(0xFF8B5CF6),
                                   ),
                                   Text(
                                     "65%",
@@ -148,7 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 17, top: 13, right: 18),
+                padding: EdgeInsets.only(left: 17, top: 13, right: 18),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -208,7 +208,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.only(
+                      padding: EdgeInsets.only(
                         left: 20,
                         top: 8,
                         bottom: 8,
@@ -219,12 +219,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: InkWell(
                           borderRadius: BorderRadius.circular(12),
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => NotesScreen(),
-                              ),
-                            );
+                            Navigator.pushNamed(context, AppRoutes.notes);
                           },
                           child: Container(
                             width: 160,
@@ -270,12 +265,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 56,
                     child: FloatingActionButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => AddTaskScreen(),
-                          ),
-                        );
+                        Navigator.pushNamed(context, AppRoutes.addTask);
                       },
                       backgroundColor: Color(0xFF8B5CF6),
                       foregroundColor: Color(0xFFFFFFFF),
@@ -289,7 +279,18 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomNavBar(currentIndex: 0, onTap: (index) {}),
+     bottomNavigationBar: BottomNavBar(
+        currentIndex: 0,
+        onTap: (index) {
+          if (index == 1) {
+            Navigator.pushNamed(context, AppRoutes.schedule);
+          } else if (index == 2) {
+            Navigator.pushNamed(context, AppRoutes.progress);
+          } else if (index == 3) {
+            Navigator.pushNamed(context, AppRoutes.profile);
+          }
+        },
+      ), 
     );
   }
 }

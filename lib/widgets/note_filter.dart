@@ -13,7 +13,7 @@ class NoteFilter extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       
-padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 6),
+padding:  EdgeInsets.symmetric(horizontal: 11, vertical: 6),
       decoration: BoxDecoration(
         color: isSelected
             ? Color(0xFF1A2856)

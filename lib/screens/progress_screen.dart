@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:learvo/routes/app_routes.dart';
 import 'package:learvo/widgets/bottom_nav_bar.dart';
+import 'package:learvo/widgets/subject_performance.dart';
 
 class ProgressScreen extends StatelessWidget {
   const ProgressScreen({super.key});
@@ -114,7 +115,7 @@ class ProgressScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 40),
+                SizedBox(height: 50),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -135,6 +136,77 @@ class ProgressScreen extends StatelessWidget {
                       ),
                     ),
                   ],
+                ),
+                SizedBox(height: 50),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SubjectPerformance(
+                      subject: "Maths",
+                      percentage: "80%",
+                      icon: Icons.calculate_outlined,
+                      iconColor: Color(0xFF168BFF),
+                    ),
+                    SubjectPerformance(
+                      subject: "Physics",
+                      percentage: "60%",
+                      icon: Icons.biotech,
+                      iconColor: Color(0xFF8B5CF6),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 25),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SubjectPerformance(
+                      subject: "English",
+                      percentage: "50%",
+                      icon: Icons.menu_book_outlined,
+                      iconColor: Color(0xFFDC2626),
+                    ),
+                    SubjectPerformance(
+                      subject: "Chemistry",
+                      percentage: "70%",
+                      icon: Icons.science_outlined,
+                      iconColor: Color(0xFFEAB308),
+                    ),
+                  ],
+                ),
+                SizedBox(height:62 ,),
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: Color(0xFFE9DFFF),
+                    border: Border.all(color: Color(0xFFE9DFFF)),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.emoji_events,
+                        color: Color(0xFF8B5CF6),
+                        size: 30,
+                      ),
+                      SizedBox(width: 16),
+                      Expanded(
+                        child: Column(
+                          children: [
+                            Text(
+                              "Small steps create \n big results! Keep going! ",
+                              style: TextStyle(
+                                color: Color(0xFF64748B),
+                                fontSize: 14,
+                              ),
+                            ),
+                           
+                          ],
+                        ),
+                      ),
+                      Icon(Icons.chevron_right, color: Color(0xFFCBD5E1)),
+                    ],
+                  ),
                 ),
               ],
             ),

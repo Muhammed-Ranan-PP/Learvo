@@ -35,8 +35,8 @@ class BottomNavBar extends StatelessWidget {
                   Icon(
                     items[index].$1,
                     color: isSelected
-                        ? const Color(0xFF8B5CF6)
-                        : const Color(0xFF64748B),
+                        ?  Color(0xFF8B5CF6)
+                        :  Color(0xFF64748B),
                   ),
                   SizedBox(height: 4),
                   Text(
@@ -44,8 +44,8 @@ class BottomNavBar extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 11,
                       color: isSelected
-                          ? const Color(0xFF8B5CF6)
-                          : const Color(0xFF64748B),
+                          ?  Color(0xFF8B5CF6)
+                          :  Color(0xFF64748B),
                     ),
                   ),
                 ],

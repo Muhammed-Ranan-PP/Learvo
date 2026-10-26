@@ -85,7 +85,7 @@ class ScheduleScreen extends StatelessWidget {
                 SizedBox(height: 32),
                 Container(
                   height: 60,
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  padding:  EdgeInsets.symmetric(horizontal: 10),
                   decoration: BoxDecoration(
                     color: Color(0xFFFFFFFF),
                     border: Border.all(color: Color(0xFFD6D6D6)),

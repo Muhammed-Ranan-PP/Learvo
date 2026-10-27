@@ -30,9 +30,7 @@ class TaskInput extends StatelessWidget {
           decoration: InputDecoration(
             hintText: hint,
             prefixIcon: Icon(icon),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
           ),
         ),
       ],

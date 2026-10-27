@@ -27,7 +27,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(height: 26),
                           Text(
                             "Good Morning",
                             style: TextStyle(
@@ -224,7 +223,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Container(
                             width: 160,
                             height: 95,
-                            padding: const EdgeInsets.all(12),
+                            padding: EdgeInsets.all(12),
                             decoration: BoxDecoration(
                               color: Color(0xFFDCEBFF),
                               borderRadius: BorderRadius.circular(12),

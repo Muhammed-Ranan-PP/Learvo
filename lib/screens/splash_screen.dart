@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:learvo/screens/login_screen.dart';
 
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -11,13 +10,17 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
-  void initState(){
+  void initState() {
     super.initState();
-    Future.delayed( Duration(seconds: 3),(){
-      if(!mounted)return;
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
+    Future.delayed(Duration(seconds: 3), () {
+      if (!mounted) return;
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => LoginScreen()),
+      );
     });
   }
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF101828),
@@ -38,9 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
             SizedBox(height: 8),
             Text(
-              style: TextStyle(
-                fontSize: 14, color: Color(0xFFB0BEC5)
-                ),
+              style: TextStyle(fontSize: 14, color: Color(0xFFB0BEC5)),
               "Plan Smart. Learn Better.",
             ),
             SizedBox(height: 250),
@@ -50,7 +51,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(24),
                 ),
-                fixedSize: Size(220, 48)
+                fixedSize: Size(220, 48),
               ),
               onPressed: () {},
               child: Text(

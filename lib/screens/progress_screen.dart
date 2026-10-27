@@ -173,10 +173,10 @@ class ProgressScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height:62 ,),
+                SizedBox(height: 62),
                 Container(
                   width: double.infinity,
-                  padding: const EdgeInsets.all(12),
+                  padding: EdgeInsets.all(12),
                   decoration: BoxDecoration(
                     color: Color(0xFFE9DFFF),
                     border: Border.all(color: Color(0xFFE9DFFF)),
@@ -200,7 +200,6 @@ class ProgressScreen extends StatelessWidget {
                                 fontSize: 14,
                               ),
                             ),
-                           
                           ],
                         ),
                       ),

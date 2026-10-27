@@ -138,20 +138,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 48,
                 child: ElevatedButton(
                   onPressed: () {
-                    if(emailController.text.isEmpty){
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text("Please enter your email"),
-                      ),
+                    if (emailController.text.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text("Please enter your email")),
                       );
-                    }else if(passwordController.text.isEmpty){
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text("Please Enter your password"),
-                      ),
+                    } else if (passwordController.text.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text("Please Enter your password")),
                       );
-                    }else{
+                    } else {
                       Navigator.pushReplacementNamed(context, AppRoutes.home);
                     }
-                    
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF1A2856),
@@ -161,9 +158,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   child: Text(
-                    style: TextStyle(
-                      fontSize: 20,
-                       fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     "Login",
                   ),
                 ),

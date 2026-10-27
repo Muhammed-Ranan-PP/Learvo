@@ -36,14 +36,14 @@ class ProfileScreen extends StatelessWidget {
               Expanded(
                 child: Container(
                   width: double.infinity,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.vertical(
                       top: Radius.circular(24),
                     ),
                   ),
                   child: Column(
-                    children:  [
+                    children: [
                       SizedBox(height: 12),
                       ProfileMenuItem(
                         title: "My Details",
@@ -68,8 +68,12 @@ class ProfileScreen extends StatelessWidget {
                         title: "Log Out",
                         icon: Icons.logout,
                         iconColor: Color(0xFFFF1744),
-                        onTap: (){
-                          Navigator.pushNamedAndRemoveUntil(context, AppRoutes.login, (route)=>false);
+                        onTap: () {
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            AppRoutes.login,
+                            (route) => false,
+                          );
                         },
                       ),
                       Spacer(),

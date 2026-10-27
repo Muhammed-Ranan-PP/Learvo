@@ -34,18 +34,14 @@ class BottomNavBar extends StatelessWidget {
                 children: [
                   Icon(
                     items[index].$1,
-                    color: isSelected
-                        ?  Color(0xFF8B5CF6)
-                        :  Color(0xFF64748B),
+                    color: isSelected ? Color(0xFF8B5CF6) : Color(0xFF64748B),
                   ),
                   SizedBox(height: 4),
                   Text(
                     items[index].$2,
                     style: TextStyle(
                       fontSize: 11,
-                      color: isSelected
-                          ?  Color(0xFF8B5CF6)
-                          :  Color(0xFF64748B),
+                      color: isSelected ? Color(0xFF8B5CF6) : Color(0xFF64748B),
                     ),
                   ),
                 ],

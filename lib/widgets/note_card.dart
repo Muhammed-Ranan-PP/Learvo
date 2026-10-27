@@ -21,8 +21,8 @@ class NoteCard extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 20),
       padding: EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
-        color: Color(0xFFFFFFFF),
-        border: Border.all(color: Color(0xFFD6D6D6)),
+        color: Colors.white,
+        border: Border.all(color: Color.fromARGB(255, 214, 214, 214)),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Row(
@@ -31,7 +31,7 @@ class NoteCard extends StatelessWidget {
             width: 32,
             height: 32,
             decoration: BoxDecoration(
-              color: Color(0xFFE2ECFF),
+              color: Color.fromARGB(255, 226, 236, 255),
               shape: BoxShape.circle,
             ),
             child: Icon(icon, color: iconColor, size: 20),
@@ -44,14 +44,17 @@ class NoteCard extends StatelessWidget {
               Text(
                 label,
                 style: TextStyle(
-                  color: Color(0xFF64748B),
+                  color: Color.fromARGB(255, 100, 116, 139),
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Text(
                 details,
-                style: TextStyle(color: Color(0xFF64748B), fontSize: 12),
+                style: TextStyle(
+                  color: Color.fromARGB(255, 100, 116, 139),
+                  fontSize: 12,
+                ),
               ),
             ],
           ),

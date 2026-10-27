@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 
 class AppTheme {
   static final lightTheme = ThemeData(
-    scaffoldBackgroundColor: Color(0xFFF7F9FC),
+    scaffoldBackgroundColor: Color.fromARGB(255, 247, 249, 252),
 
-    colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF8B5CF6)),
+    colorScheme: ColorScheme.fromSeed(
+      seedColor: Color.fromARGB(255, 139, 92, 246),
+    ),
 
     textTheme: TextTheme(
-      bodyMedium: TextStyle(color: Color(0xFF1A2856)),
-      bodySmall: TextStyle(color: Color(0xFF64748B)),
+      bodyMedium: TextStyle(color: Color.fromARGB(255, 26, 40, 86)),
+      bodySmall: TextStyle(color: Color.fromARGB(255, 100, 116, 139)),
       titleMedium: TextStyle(
-        color: Color(0xFF1A2856),
+        color: Color.fromARGB(255, 26, 40, 86),
         fontSize: 18,
         fontWeight: FontWeight.bold,
       ),

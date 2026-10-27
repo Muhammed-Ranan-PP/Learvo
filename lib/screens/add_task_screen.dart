@@ -8,7 +8,7 @@ class AddTaskScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFFFFFF),
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
@@ -19,14 +19,17 @@ class AddTaskScreen extends StatelessWidget {
                   children: [
                     IconButton(
                       onPressed: () => Navigator.pop(context),
-                      icon: Icon(Icons.arrow_back, color: Color(0xFF1A2856)),
+                      icon: Icon(
+                        Icons.arrow_back,
+                        color: Color.fromARGB(255, 26, 40, 86),
+                      ),
                     ),
                     Expanded(
                       child: Text(
                         "Add New Task",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          color: Color(0xFF1A2856),
+                          color: Color.fromARGB(255, 26, 40, 86),
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
@@ -36,7 +39,7 @@ class AddTaskScreen extends StatelessWidget {
                       onPressed: () {},
                       icon: Icon(
                         Icons.calendar_month_outlined,
-                        color: Color(0xFF1A2856),
+                        color: Color.fromARGB(255, 26, 40, 86),
                       ),
                     ),
                   ],
@@ -46,7 +49,6 @@ class AddTaskScreen extends StatelessWidget {
                   hint: "e.g. Calculus Revision",
                   icon: Icons.description_outlined,
                 ),
-
                 SizedBox(height: 17.4),
                 TaskInput(
                   label: "Subject*",
@@ -71,7 +73,7 @@ class AddTaskScreen extends StatelessWidget {
                   child: Text(
                     "Priority",
                     style: TextStyle(
-                      color: Color(0xFF1A2856),
+                      color: Color.fromARGB(255, 26, 40, 86),
                       fontSize: 23,
                       fontWeight: FontWeight.bold,
                     ),
@@ -83,21 +85,21 @@ class AddTaskScreen extends StatelessWidget {
                   children: [
                     PriorityOption(
                       label: "Low",
-                      backgroundColor: Color(0xFFD9FBE5),
-                      borderColor: Color(0xFF86EFAC),
-                      textColor: Color(0xFF16A34A),
+                      backgroundColor: Color.fromARGB(255, 217, 251, 229),
+                      borderColor: Color.fromARGB(255, 134, 239, 172),
+                      textColor: Color.fromARGB(255, 22, 163, 74),
                     ),
                     PriorityOption(
                       label: "Medium",
-                      backgroundColor: Color(0xFFFFF6CC),
-                      borderColor: Color(0xFFFDE047),
-                      textColor: Color(0xFFEAB308),
+                      backgroundColor: Color.fromARGB(255, 255, 246, 204),
+                      borderColor: Color.fromARGB(255, 253, 224, 71),
+                      textColor: Color.fromARGB(255, 234, 179, 8),
                     ),
                     PriorityOption(
                       label: "High",
-                      backgroundColor: Color(0xFFFCE4F4),
-                      borderColor: Color(0xFFF9A8D4),
-                      textColor: Color(0xFFDC2626),
+                      backgroundColor: Color.fromARGB(255, 252, 228, 244),
+                      borderColor: Color.fromARGB(255, 249, 168, 212),
+                      textColor: Color.fromARGB(255, 220, 38, 38),
                     ),
                   ],
                 ),
@@ -107,7 +109,7 @@ class AddTaskScreen extends StatelessWidget {
                   child: Text(
                     "Notes (Optional)",
                     style: TextStyle(
-                      color: Color(0xFF1A2856),
+                      color: Color.fromARGB(255, 26, 40, 86),
                       fontSize: 23,
                       fontWeight: FontWeight.bold,
                     ),
@@ -132,8 +134,8 @@ class AddTaskScreen extends StatelessWidget {
                       Navigator.pop(context);
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF1A2856),
-                      foregroundColor: Color(0xFFFFFFFF),
+                      backgroundColor: Color.fromARGB(255, 26, 40, 86),
+                      foregroundColor: Colors.white,
                     ),
                     child: Text("Save Task"),
                   ),

@@ -6,6 +6,7 @@ class TaskCard extends StatelessWidget {
   final IconData icon;
   final Color iconColor;
   final Color statusColor;
+
   const TaskCard({
     super.key,
     required this.title,
@@ -23,7 +24,7 @@ class TaskCard extends StatelessWidget {
         height: 58,
         padding: EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
-          color: Color(0xFFFFFFFF),
+          color: Color.fromARGB(255, 255, 255, 255),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Row(
@@ -32,7 +33,7 @@ class TaskCard extends StatelessWidget {
               width: 36,
               height: 36,
               decoration: BoxDecoration(
-                color: Color(0xFFE2ECFF),
+                color: Color.fromARGB(255, 226, 236, 255),
                 shape: BoxShape.circle,
               ),
               child: Icon(icon, color: iconColor, size: 22),
@@ -46,7 +47,7 @@ class TaskCard extends StatelessWidget {
                   Text(
                     title,
                     style: TextStyle(
-                      color: Color(0xFF1A2856),
+                      color: Color.fromARGB(255, 26, 40, 86),
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
                     ),
@@ -54,7 +55,10 @@ class TaskCard extends StatelessWidget {
                   SizedBox(height: 4),
                   Text(
                     time,
-                    style: TextStyle(color: Color(0xFF64748B), fontSize: 10),
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 100, 116, 139),
+                      fontSize: 10,
+                    ),
                   ),
                 ],
               ),

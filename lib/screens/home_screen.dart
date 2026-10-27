@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Expanded(
                     child: Padding(
-                      padding:  EdgeInsets.all(20.0),
+                      padding: EdgeInsets.all(20.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             "Good Morning",
                             style: TextStyle(
                               fontSize: 16,
-                              color: Color(0xFF64748B),
+                              color: Color.fromARGB(255, 100, 116, 139),
                             ),
                           ),
                           SizedBox(height: 4),
@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             "Muhammed Ranan",
                             style: TextStyle(
                               fontSize: 24,
-                              color: Color(0xFF1A2856),
+                              color: Color.fromARGB(255, 26, 40, 86),
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -48,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             "Friday, 09 October",
                             style: TextStyle(
                               fontSize: 14,
-                              color: Color(0xFF64748B),
+                              color: Color.fromARGB(255, 100, 116, 139),
                             ),
                           ),
                         ],
@@ -60,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     offset: Offset(-10, 45),
                     child: Icon(
                       Icons.account_circle_outlined,
-                      color: Color(0xFF1A2856),
+                      color: Color.fromARGB(255, 26, 40, 86),
                       size: 40,
                     ),
                   ),
@@ -72,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: double.infinity,
                   height: 180,
                   decoration: BoxDecoration(
-                    color: Color(0xFF1A2856),
+                    color: Color.fromARGB(255, 26, 40, 86),
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: Column(
@@ -92,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Row(
                         children: [
                           Padding(
-                            padding:  EdgeInsets.only(left: 30, top: 20),
+                            padding: EdgeInsets.only(left: 30, top: 20),
                             child: SizedBox(
                               width: 85,
                               height: 85,
@@ -103,12 +103,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                     value: 0.65,
                                     strokeWidth: 6.5,
                                     constraints: BoxConstraints.expand(),
-                                    color: Color(0xFF8B5CF6),
+                                    color: Color.fromARGB(255, 139, 92, 246),
                                   ),
                                   Text(
                                     "65%",
                                     style: TextStyle(
-                                      color: Color(0xFFFFFFFF),
+                                      color: Color.fromARGB(255, 255, 255, 255),
                                       fontSize: 19,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -123,7 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Text(
                                   "3 of 5 tasks completed",
                                   style: TextStyle(
-                                    color: Color(0xFFFFFFFF),
+                                    color: Color.fromARGB(255, 255, 255, 255),
                                     fontSize: 19,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -132,7 +132,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Text(
                                   "Keep going! you're doing great",
                                   style: TextStyle(
-                                    color: Color(0xFFD1D5DB),
+                                    color: Color.fromARGB(255, 209, 213, 219),
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -154,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Text(
                       "Today's Tasks",
                       style: TextStyle(
-                        color: Color(0xFF1A2856),
+                        color: Color.fromARGB(255, 26, 40, 86),
                         fontSize: 19,
                         fontWeight: FontWeight.bold,
                       ),
@@ -162,7 +162,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Text(
                       "view all",
                       style: TextStyle(
-                        color: Color(0xFF8B5CF6),
+                        color: Color.fromARGB(255, 139, 92, 246),
                         fontSize: 19,
                         fontWeight: FontWeight.bold,
                       ),
@@ -175,32 +175,32 @@ class _HomeScreenState extends State<HomeScreen> {
                 title: "Maths - Chapter 4",
                 time: "09:00 AM - 10:30 AM",
                 icon: Icons.calculate_outlined,
-                iconColor: Color(0xFF168BFF),
-                statusColor: Color(0xFF16A34A),
+                iconColor: Color.fromARGB(255, 22, 139, 255),
+                statusColor: Color.fromARGB(255, 22, 163, 74),
               ),
               SizedBox(height: 2),
               TaskCard(
                 title: "Physics - Numericals",
                 time: "11:00 AM - 12:00 PM",
                 icon: Icons.biotech,
-                iconColor: Color(0xFF8B5CF6),
-                statusColor: Color(0xFFCBD5E1),
+                iconColor: Color.fromARGB(255, 139, 92, 246),
+                statusColor: Color.fromARGB(255, 203, 213, 225),
               ),
               SizedBox(height: 2),
               TaskCard(
                 title: "English - Essay Writing",
                 time: "02:00 PM - 03:00 PM",
                 icon: Icons.menu_book_outlined,
-                iconColor: Color(0xFFDC2626),
-                statusColor: Color(0xFFCBD5E1),
+                iconColor: Color.fromARGB(255, 220, 38, 38),
+                statusColor: Color.fromARGB(255, 203, 213, 225),
               ),
               SizedBox(height: 2),
               TaskCard(
                 title: "Chemistry - Revision",
                 time: "05:00 PM - 06:00 PM",
                 icon: Icons.science_outlined,
-                iconColor: Color(0xFFEAB308),
-                statusColor: Color(0xFFCBD5E1),
+                iconColor: Color.fromARGB(255, 234, 179, 8),
+                statusColor: Color.fromARGB(255, 203, 213, 225),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -225,7 +225,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             height: 95,
                             padding: EdgeInsets.all(12),
                             decoration: BoxDecoration(
-                              color: Color(0xFFDCEBFF),
+                              color: Colors.white,
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Column(
@@ -233,13 +233,13 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 Icon(
                                   Icons.description_outlined,
-                                  color: Color(0xFF1A2856),
+                                  color: Color.fromARGB(255, 26, 40, 86),
                                   size: 24,
                                 ),
                                 Text(
                                   "My Notes",
                                   style: TextStyle(
-                                    color: Color(0xFF1A2856),
+                                    color: Color.fromARGB(255, 26, 40, 86),
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -247,7 +247,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Text(
                                   "Access your notes",
                                   style: TextStyle(
-                                    color: Color(0xFF64748B),
+                                    color: Color.fromARGB(255, 100, 116, 139),
                                     fontSize: 11,
                                   ),
                                 ),
@@ -259,17 +259,20 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   SizedBox(height: 10),
-                  SizedBox(
-                    width: 56,
-                    height: 56,
-                    child: FloatingActionButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, AppRoutes.addTask);
-                      },
-                      backgroundColor: Color(0xFF8B5CF6),
-                      foregroundColor: Color(0xFFFFFFFF),
-                      shape: CircleBorder(),
-                      child: Icon(Icons.add, size: 30),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 15),
+                    child: SizedBox(
+                      width: 56,
+                      height: 56,
+                      child: FloatingActionButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, AppRoutes.addTask);
+                        },
+                        backgroundColor: Color.fromARGB(255, 139, 92, 246),
+                        foregroundColor: Color.fromARGB(255, 255, 255, 255),
+                        shape: CircleBorder(),
+                        child: Icon(Icons.add, size: 30),
+                      ),
                     ),
                   ),
                 ],
@@ -278,7 +281,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-     bottomNavigationBar: BottomNavBar(
+      bottomNavigationBar: BottomNavBar(
         currentIndex: 0,
         onTap: (index) {
           if (index == 1) {
@@ -289,7 +292,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Navigator.pushNamed(context, AppRoutes.profile);
           }
         },
-      ), 
+      ),
     );
   }
 }

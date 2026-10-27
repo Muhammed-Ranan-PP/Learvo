@@ -12,14 +12,18 @@ class ProfileScreen extends StatelessWidget {
       body: SafeArea(
         child: Container(
           width: double.infinity,
-          color: Color(0xFF21124F),
+          color: Color.fromARGB(255, 26, 40, 86),
           child: Column(
             children: [
               SizedBox(height: 24),
               CircleAvatar(
                 radius: 58,
-                backgroundColor: Color(0xFFE2ECFF),
-                child: Icon(Icons.person, size: 80, color: Color(0xFF8B5CF6)),
+                backgroundColor: Colors.white,
+                child: Icon(
+                  Icons.person,
+                  size: 80,
+                  color: Color.fromARGB(255, 139, 92, 246),
+                ),
               ),
               SizedBox(height: 8),
               Text(
@@ -48,26 +52,25 @@ class ProfileScreen extends StatelessWidget {
                       ProfileMenuItem(
                         title: "My Details",
                         icon: Icons.person_outline,
-                        iconColor: Color(0xFF1A2856),
+                        iconColor: Colors.white,
                       ),
                       Divider(height: 1, indent: 30, endIndent: 30),
                       ProfileMenuItem(
                         title: "App Settings",
                         icon: Icons.settings_outlined,
-                        iconColor: Color(0xFF1A2856),
+                        iconColor: Color.fromARGB(255, 26, 40, 86),
                       ),
-
                       Divider(height: 1, indent: 30, endIndent: 30),
                       ProfileMenuItem(
                         title: "Help & Support",
                         icon: Icons.help_outline,
-                        iconColor: Color(0xFF1A2856),
+                        iconColor: Color.fromARGB(255, 26, 40, 86),
                       ),
                       Divider(height: 1, indent: 30, endIndent: 30),
                       ProfileMenuItem(
                         title: "Log Out",
                         icon: Icons.logout,
-                        iconColor: Color(0xFFFF1744),
+                        iconColor: Color.fromARGB(255, 255, 23, 68),
                         onTap: () {
                           Navigator.pushNamedAndRemoveUntil(
                             context,
@@ -79,7 +82,7 @@ class ProfileScreen extends StatelessWidget {
                       Spacer(),
                       Icon(
                         Icons.menu_book_rounded,
-                        color: Color(0xFF2878FF),
+                        color: Color.fromARGB(255, 40, 120, 255),
                         size: 38,
                       ),
                       SizedBox(height: 6),
@@ -87,7 +90,7 @@ class ProfileScreen extends StatelessWidget {
                         "Better Learning \n Brighter Future",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          color: Color(0xFF8494BC),
+                          color: Color.fromARGB(255, 132, 148, 188),
                           fontSize: 12,
                         ),
                       ),

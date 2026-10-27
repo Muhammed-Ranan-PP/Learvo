@@ -18,14 +18,17 @@ class NotesScreen extends StatelessWidget {
                   children: [
                     IconButton(
                       onPressed: () => Navigator.pop(context),
-                      icon: Icon(Icons.arrow_back, color: Color(0xFF1A2856)),
+                      icon: Icon(
+                        Icons.arrow_back,
+                        color: Color.fromARGB(255, 26, 40, 86),
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 17.0),
                       child: Text(
                         "My Notes",
                         style: TextStyle(
-                          color: Color(0xFF1A2856),
+                          color: Color.fromARGB(255, 26, 40, 86),
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
                         ),
@@ -36,7 +39,10 @@ class NotesScreen extends StatelessWidget {
                 SizedBox(height: 12),
                 TextField(
                   decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.search, color: Color(0xFF1A2856)),
+                    prefixIcon: Icon(
+                      Icons.search,
+                      color: Color.fromARGB(255, 26, 40, 86),
+                    ),
                     hintText: "Search notes...",
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
@@ -59,25 +65,25 @@ class NotesScreen extends StatelessWidget {
                   label: "Quadric Equations",
                   details: "Maths. 12 sep 2025",
                   icon: Icons.calculate_outlined,
-                  iconColor: Color(0xFF168BFF),
+                  iconColor: Color.fromARGB(255, 22, 139, 255),
                 ),
                 NoteCard(
                   label: "Atomic Structure",
                   details: "Physics. 10 sep 2025 ",
                   icon: Icons.biotech,
-                  iconColor: Color(0xFF8B5CF6),
+                  iconColor: Color.fromARGB(255, 139, 92, 246),
                 ),
                 NoteCard(
                   label: "Essay Format",
                   details: "English. 08 sep 2025",
                   icon: Icons.menu_book_outlined,
-                  iconColor: Color(0xFFDC2626),
+                  iconColor: Color.fromARGB(255, 220, 38, 38),
                 ),
                 NoteCard(
                   label: "Organic Chemistry",
                   details: "Chemistry. 05 seo 2025",
                   icon: Icons.calculate_outlined,
-                  iconColor: Color(0xFF168BFF),
+                  iconColor: Color.fromARGB(255, 22, 139, 255),
                 ),
               ],
             ),

@@ -4,6 +4,7 @@ class ScheduleDate extends StatelessWidget {
   final String day;
   final String date;
   final bool isSelected;
+
   const ScheduleDate({
     super.key,
     required this.day,
@@ -13,13 +14,18 @@ class ScheduleDate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textColor = isSelected ? Color(0xFFFFFFFF) : Color(0xFF1A2856);
+    final textColor = isSelected
+        ? Colors.white
+        : Color.fromARGB(255, 26, 40, 86);
+
     return Container(
       width: 40,
       height: 60,
       padding: EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
-        color: isSelected ? Color(0xFF8B5CF6) : Color(0x00000000),
+        color: isSelected
+            ? Color.fromARGB(255, 139, 92, 246)
+            : Color.fromARGB(0, 0, 0, 0),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Column(

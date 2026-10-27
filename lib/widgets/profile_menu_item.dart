@@ -21,9 +21,15 @@ class ProfileMenuItem extends StatelessWidget {
       leading: Icon(icon, color: iconColor),
       title: Text(
         title,
-        style: TextStyle(color: Color(0xFF8494BC), fontWeight: FontWeight.w600),
+        style: TextStyle(
+          color: Color.fromARGB(255, 132, 148, 188),
+          fontWeight: FontWeight.w600,
+        ),
       ),
-      trailing: Icon(Icons.chevron_right, color: Color(0xFF64748B)),
+      trailing: Icon(
+        Icons.chevron_right,
+        color: Color.fromARGB(255, 100, 116, 139),
+      ),
     );
   }
 }

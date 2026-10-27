@@ -14,7 +14,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF7F9FC),
+      backgroundColor: Colors.white,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -31,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 style: TextStyle(
                   fontSize: 45,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF1A2856),
+                  color: Color.fromARGB(255, 26, 40, 86),
                 ),
                 "Learvo",
               ),
@@ -47,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(height: 4),
               Text(
                 "Continue your learning journey",
-                style: TextStyle(fontSize: 16, color: Color(0xFF64748B)),
+                style: TextStyle(fontSize: 16, color: Color.fromARGB(255, 148, 163, 184)),
               ),
               SizedBox(height: 24),
               SizedBox(
@@ -60,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF1A2856),
+                        color: Color.fromARGB(255, 26, 40, 86),
                       ),
                     ),
                     SizedBox(height: 8),
@@ -70,13 +70,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         hintText: "Enter your email",
                         hintStyle: TextStyle(
                           fontSize: 12,
-                          color: Color(0xFF94A3B8),
+                          color: Color.fromARGB(255, 148, 163, 184),
                         ),
                         filled: true,
                         fillColor: Colors.white,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(11),
-                          borderSide: BorderSide(color: Color(0xFFE2E8F0)),
+                          borderSide: BorderSide(color: Colors.white),
                         ),
                       ),
                     ),
@@ -94,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: Color(0xFF1A2856),
+                        color: Color.fromARGB(255, 26, 40, 86),
                       ),
                     ),
                     SizedBox(height: 8),
@@ -105,13 +105,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         hintText: "Enter your password",
                         hintStyle: TextStyle(
                           fontSize: 12,
-                          color: Color(0xFF94A3B8),
+                          color: Color.fromARGB(255, 148, 163, 184),
                         ),
                         filled: true,
                         fillColor: Colors.white,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(11),
-                          borderSide: BorderSide(color: Color(0xFFE2E8F0)),
+                          borderSide: BorderSide(color: Colors.white),
                         ),
                       ),
                     ),
@@ -127,7 +127,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () {},
                     child: Text(
                       "Forgot Password?",
-                      style: TextStyle(color: Color(0xFF8B5CF6)),
+                      style: TextStyle(color: Color.fromARGB(255, 139, 92, 246)),
                     ),
                   ),
                 ),
@@ -151,7 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF1A2856),
+                    backgroundColor: Color.fromARGB(255, 26, 40, 86),
                     foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
@@ -172,7 +172,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Text(
                       "Don't have an account?",
                       style: TextStyle(
-                        color: Color(0xFF1A2856),
+                        color: Color.fromARGB(255, 26, 40, 86),
                         fontWeight: FontWeight.bold,
                         fontSize: 15,
                       ),
@@ -182,7 +182,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Text(
                         "Sign Up",
                         style: TextStyle(
-                          color: Color(0xFF8B5CF6),
+                          color: Color.fromARGB(255, 139, 92, 246),
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
                         ),

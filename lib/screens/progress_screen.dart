@@ -19,7 +19,7 @@ class ProgressScreen extends StatelessWidget {
                 Text(
                   "Your Progress",
                   style: TextStyle(
-                    color: Color(0xFF1A2856),
+                    color: Color.fromARGB(255, 26, 40, 86),
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
                   ),
@@ -28,7 +28,7 @@ class ProgressScreen extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.all(4),
                   decoration: BoxDecoration(
-                    color: Color(0xFFF1F5F9),
+                    color: Colors.white,
                     borderRadius: BorderRadius.circular(24),
                   ),
                   child: Row(
@@ -37,14 +37,14 @@ class ProgressScreen extends StatelessWidget {
                         child: Container(
                           padding: EdgeInsets.symmetric(vertical: 8),
                           decoration: BoxDecoration(
-                            color: Color(0xFF1A2856),
+                            color: Color.fromARGB(255, 26, 40, 86),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Center(
                             child: Text(
                               "This Week",
                               style: TextStyle(
-                                color: Color(0xFFFFFFFF),
+                                color: Colors.white,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
@@ -55,7 +55,9 @@ class ProgressScreen extends StatelessWidget {
                         child: Center(
                           child: Text(
                             "This Month",
-                            style: TextStyle(color: Color(0xFF94A3B8)),
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 148, 163, 184),
+                            ),
                           ),
                         ),
                       ),
@@ -63,7 +65,9 @@ class ProgressScreen extends StatelessWidget {
                         child: Center(
                           child: Text(
                             "This Year",
-                            style: TextStyle(color: Color(0xFF94A3B8)),
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 148, 163, 184),
+                            ),
                           ),
                         ),
                       ),
@@ -71,7 +75,6 @@ class ProgressScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 24),
-
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -85,12 +88,12 @@ class ProgressScreen extends StatelessWidget {
                             value: 0.65,
                             strokeWidth: 6.5,
                             constraints: BoxConstraints.expand(),
-                            color: Color(0xFF8B5CF6),
+                            color: Color.fromARGB(255, 139, 92, 246),
                           ),
                           Text(
                             "65%",
                             style: TextStyle(
-                              color: Color(0xFF1A2856),
+                              color: Color.fromARGB(255, 26, 40, 86),
                               fontSize: 19,
                               fontWeight: FontWeight.bold,
                             ),
@@ -98,7 +101,6 @@ class ProgressScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-
                     SizedBox(width: 94),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,7 +124,7 @@ class ProgressScreen extends StatelessWidget {
                     Text(
                       "Subject Performance",
                       style: TextStyle(
-                        color: Color(0xFF1A2856),
+                        color: Color.fromARGB(255, 26, 40, 86),
                         fontSize: 19,
                         fontWeight: FontWeight.bold,
                       ),
@@ -130,7 +132,7 @@ class ProgressScreen extends StatelessWidget {
                     Text(
                       "View all ",
                       style: TextStyle(
-                        color: Color(0xFF8B5CF6),
+                        color: Color.fromARGB(255, 139, 92, 246),
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
@@ -145,13 +147,13 @@ class ProgressScreen extends StatelessWidget {
                       subject: "Maths",
                       percentage: "80%",
                       icon: Icons.calculate_outlined,
-                      iconColor: Color(0xFF168BFF),
+                      iconColor: Color.fromARGB(255, 22, 139, 255),
                     ),
                     SubjectPerformance(
                       subject: "Physics",
                       percentage: "60%",
                       icon: Icons.biotech,
-                      iconColor: Color(0xFF8B5CF6),
+                      iconColor: Color.fromARGB(255, 139, 92, 246),
                     ),
                   ],
                 ),
@@ -163,13 +165,13 @@ class ProgressScreen extends StatelessWidget {
                       subject: "English",
                       percentage: "50%",
                       icon: Icons.menu_book_outlined,
-                      iconColor: Color(0xFFDC2626),
+                      iconColor: Color.fromARGB(255, 220, 38, 38),
                     ),
                     SubjectPerformance(
                       subject: "Chemistry",
                       percentage: "70%",
                       icon: Icons.science_outlined,
-                      iconColor: Color(0xFFEAB308),
+                      iconColor: Color.fromARGB(255, 234, 179, 8),
                     ),
                   ],
                 ),
@@ -178,15 +180,17 @@ class ProgressScreen extends StatelessWidget {
                   width: double.infinity,
                   padding: EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: Color(0xFFE9DFFF),
-                    border: Border.all(color: Color(0xFFE9DFFF)),
+                    color: Colors.white,
+                    border: Border.all(
+                      color: Color.fromARGB(255, 233, 223, 255),
+                    ),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Row(
                     children: [
                       Icon(
                         Icons.emoji_events,
-                        color: Color(0xFF8B5CF6),
+                        color: Color.fromARGB(255, 139, 92, 246),
                         size: 30,
                       ),
                       SizedBox(width: 16),
@@ -196,14 +200,14 @@ class ProgressScreen extends StatelessWidget {
                             Text(
                               "Small steps create \n big results! Keep going! ",
                               style: TextStyle(
-                                color: Color(0xFF64748B),
+                                color: Color.fromARGB(255, 100, 116, 139),
                                 fontSize: 14,
                               ),
                             ),
                           ],
                         ),
                       ),
-                      Icon(Icons.chevron_right, color: Color(0xFFCBD5E1)),
+                      Icon(Icons.chevron_right, color: Colors.white),
                     ],
                   ),
                 ),

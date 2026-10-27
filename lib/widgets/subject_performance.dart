@@ -5,6 +5,7 @@ class SubjectPerformance extends StatelessWidget {
   final String percentage;
   final IconData icon;
   final Color iconColor;
+
   const SubjectPerformance({
     super.key,
     required this.subject,
@@ -20,7 +21,7 @@ class SubjectPerformance extends StatelessWidget {
       padding: EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: Colors.white,
-        border: Border.all(color: Color(0xFFE2E8F0)),
+        border: Border.all(color: Color.fromARGB(255, 226, 232, 240)),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Row(

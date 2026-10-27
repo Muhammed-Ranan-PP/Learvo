@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF101828),
+      backgroundColor: Color.fromARGB(255, 26, 40, 86),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -41,13 +41,16 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
             SizedBox(height: 8),
             Text(
-              style: TextStyle(fontSize: 14, color: Color(0xFFB0BEC5)),
+              style: TextStyle(
+                fontSize: 14,
+                color: Color.fromARGB(255, 176, 190, 197),
+              ),
               "Plan Smart. Learn Better.",
             ),
             SizedBox(height: 250),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF8B5CF6),
+                backgroundColor: Color.fromARGB(255, 139, 92, 246),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(24),
                 ),

@@ -22,7 +22,7 @@ class ScheduleScreen extends StatelessWidget {
                     Text(
                       "Study Schedule",
                       style: TextStyle(
-                        color: Color(0xFF1A2856),
+                        color: Color.fromARGB(255, 26, 40, 86),
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                       ),
@@ -31,7 +31,7 @@ class ScheduleScreen extends StatelessWidget {
                       onPressed: () {},
                       icon: Icon(
                         Icons.calendar_month_outlined,
-                        color: Color(0xFF1A2856),
+                        color: Color.fromARGB(255, 26, 40, 86),
                         size: 29,
                       ),
                     ),
@@ -55,40 +55,40 @@ class ScheduleScreen extends StatelessWidget {
                   title: "Maths - Chapter 4",
                   time: "09:00 AM - 10:30 AM",
                   icon: Icons.calculate_outlined,
-                  iconColor: Color(0xFF168BFF),
-                  statusColor: Color(0xFF16A34A),
+                  iconColor: Color.fromARGB(255, 22, 139, 255),
+                  statusColor: Color.fromARGB(255, 22, 163, 74),
                 ),
                 SizedBox(height: 12),
                 TaskCard(
                   title: "Physics - Numericals",
                   time: "11:00 AM - 12:00 PM",
                   icon: Icons.biotech,
-                  iconColor: Color(0xFF8B5CF6),
-                  statusColor: Color(0xFFCBD5E1),
+                  iconColor: Color.fromARGB(255, 139, 92, 246),
+                  statusColor: Color.fromARGB(255, 203, 213, 225),
                 ),
                 SizedBox(height: 12),
                 TaskCard(
                   title: "English - Essay Writing",
                   time: "02:00 PM - 03:00 PM",
                   icon: Icons.menu_book_outlined,
-                  iconColor: Color(0xFFDC2626),
-                  statusColor: Color(0xFFCBD5E1),
+                  iconColor: Color.fromARGB(255, 220, 38, 38),
+                  statusColor: Color.fromARGB(255, 203, 213, 225),
                 ),
                 SizedBox(height: 12),
                 TaskCard(
                   title: "Chemistry - Revision",
                   time: "05:00 PM - 06:00 PM",
                   icon: Icons.science_outlined,
-                  iconColor: Color(0xFFEAB308),
-                  statusColor: Color(0xFFCBD5E1),
+                  iconColor: Color.fromARGB(255, 234, 179, 8),
+                  statusColor: Color.fromARGB(255, 203, 213, 225),
                 ),
                 SizedBox(height: 32),
                 Container(
                   height: 60,
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   decoration: BoxDecoration(
-                    color: Color(0xFFFFFFFF),
-                    border: Border.all(color: Color(0xFFD6D6D6)),
+                    color: Colors.white,
+                    border: Border.all(color: Colors.white),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Row(
@@ -101,14 +101,14 @@ class ScheduleScreen extends StatelessWidget {
                             Text(
                               "Total Sessions",
                               style: TextStyle(
-                                color: Color(0xFF64748B),
+                                color: Color.fromARGB(255, 100, 116, 139),
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             Text(
                               "4",
                               style: TextStyle(
-                                color: Color(0xFF1A2856),
+                                color: Color.fromARGB(255, 26, 40, 86),
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -116,7 +116,11 @@ class ScheduleScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Icon(Icons.bar_chart, color: Color(0xFF8B5CF6), size: 28),
+                      Icon(
+                        Icons.bar_chart,
+                        color: Color.fromARGB(255, 139, 92, 246),
+                        size: 28,
+                      ),
                     ],
                   ),
                 ),

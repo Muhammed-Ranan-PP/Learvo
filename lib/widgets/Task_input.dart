@@ -20,7 +20,7 @@ class TaskInput extends StatelessWidget {
         Text(
           label,
           style: TextStyle(
-            color: Color(0xFF1A2856),
+            color: Color.fromARGB(255, 26, 40, 86),
             fontSize: 19,
             fontWeight: FontWeight.bold,
           ),

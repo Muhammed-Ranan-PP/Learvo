@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:learvo/screens/login_screen.dart';
+import 'package:learvo/routes/app_routes.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -12,12 +13,17 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(Duration(seconds: 3), () async {
       if (!mounted) return;
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => LoginScreen()),
-      );
+      final prefs = await SharedPreferences.getInstance();
+      bool isLoggedIn = prefs.getBool("isLoggedIn") ?? false;
+
+      if (!mounted) return;
+      if (isLoggedIn) {
+        Navigator.pushReplacementNamed(context, AppRoutes.home);
+      } else {
+        Navigator.pushReplacementNamed(context, AppRoutes.login);
+      }
     });
   }
 

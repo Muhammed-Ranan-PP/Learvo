@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:learvo/routes/app_routes.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:learvo/services/auth_services.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -9,6 +11,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final authServices = AuthServices();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   @override
@@ -47,7 +50,10 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(height: 4),
               Text(
                 "Continue your learning journey",
-                style: TextStyle(fontSize: 16, color: Color.fromARGB(255, 148, 163, 184)),
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Color.fromARGB(255, 148, 163, 184),
+                ),
               ),
               SizedBox(height: 24),
               SizedBox(
@@ -127,7 +133,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () {},
                     child: Text(
                       "Forgot Password?",
-                      style: TextStyle(color: Color.fromARGB(255, 139, 92, 246)),
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 139, 92, 246),
+                      ),
                     ),
                   ),
                 ),
@@ -137,7 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 width: 300,
                 height: 48,
                 child: ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     if (emailController.text.isEmpty) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text("Please enter your email")),
@@ -147,7 +155,19 @@ class _LoginScreenState extends State<LoginScreen> {
                         SnackBar(content: Text("Please Enter your password")),
                       );
                     } else {
-                      Navigator.pushReplacementNamed(context, AppRoutes.home);
+                      var user = authServices.login(
+                        emailController.text.trim(),
+                        passwordController.text,
+                      );
+                      if (user != null) {
+                        final prefs = await SharedPreferences.getInstance();
+                        await prefs.setBool("isLoggedIn", true);
+                        Navigator.pushReplacementNamed(context, AppRoutes.home);
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text("Invalid email or password")),
+                        );
+                      }
                     }
                   },
                   style: ElevatedButton.styleFrom(
@@ -178,7 +198,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, AppRoutes.signUp);
+                      },
                       child: Text(
                         "Sign Up",
                         style: TextStyle(

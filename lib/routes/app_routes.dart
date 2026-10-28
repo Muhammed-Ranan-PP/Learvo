@@ -7,6 +7,7 @@ import 'package:learvo/screens/progress_screen.dart';
 import 'package:learvo/screens/profile_screen.dart';
 import 'package:learvo/screens/notes_screen.dart';
 import 'package:learvo/screens/add_task_screen.dart';
+import 'package:learvo/screens/signup_screens.dart';
 
 class AppRoutes {
   static String splash = "/";
@@ -17,6 +18,7 @@ class AppRoutes {
   static String profile = "/profile";
   static String notes = "/notes";
   static String addTask = "/addTask";
+  static String signUp = "/signUp";
   static Map<String, WidgetBuilder> routes = {
     splash: (context) => SplashScreen(),
     login: (context) => LoginScreen(),
@@ -26,5 +28,6 @@ class AppRoutes {
     profile: (context) => ProfileScreen(),
     notes: (context) => NotesScreen(),
     addTask: (context) => AddTaskScreen(),
+    signUp: (context) => SignupScreens(),
   };
 }

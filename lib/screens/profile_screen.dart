@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:learvo/widgets/bottom_nav_bar.dart';
 import 'package:learvo/routes/app_routes.dart';
 import 'package:learvo/widgets/profile_menu_item.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -71,7 +72,9 @@ class ProfileScreen extends StatelessWidget {
                         title: "Log Out",
                         icon: Icons.logout,
                         iconColor: Color.fromARGB(255, 255, 23, 68),
-                        onTap: () {
+                        onTap: () async {
+                          final prefs = await SharedPreferences.getInstance();
+                          await prefs.setBool("isLoggedIn", false);
                           Navigator.pushNamedAndRemoveUntil(
                             context,
                             AppRoutes.login,

@@ -10,7 +10,7 @@ class TaskInput extends StatelessWidget {
     required this.label,
     required this.hint,
     required this.icon,
-  });
+  });     
 
   @override
   Widget build(BuildContext context) {

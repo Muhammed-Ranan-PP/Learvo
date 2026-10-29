@@ -4,12 +4,14 @@ class TaskInput extends StatelessWidget {
   final String label;
   final String hint;
   final IconData icon;
+  final TextEditingController controller;
 
   const TaskInput({
     super.key,
     required this.label,
     required this.hint,
     required this.icon,
+    required this.controller
   });     
 
   @override
@@ -27,6 +29,7 @@ class TaskInput extends StatelessWidget {
         ),
         SizedBox(height: 8),
         TextField(
+          controller: controller,
           decoration: InputDecoration(
             hintText: hint,
             prefixIcon: Icon(icon),

@@ -3,10 +3,38 @@ import 'package:learvo/widgets/bottom_nav_bar.dart';
 import 'package:learvo/routes/app_routes.dart';
 import 'package:learvo/widgets/profile_menu_item.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:learvo/models/user_model.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
 
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+  
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  String name = "";
+  String email = "";
+  Future<void>getUserdetails()async{
+    final prefs = await SharedPreferences.getInstance();
+    email = prefs.getString("userEmail")?? "";
+    var userBox = Hive.box<User>("users");
+    for(var user in userBox.values){
+      if(user.email == email){
+      setState(() {
+        name = user.name;
+        email = user.email;
+      });
+      }
+    }
+  }
+  @override
+  void initState(){
+    super.initState();
+    getUserdetails();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +56,7 @@ class ProfileScreen extends StatelessWidget {
               ),
               SizedBox(height: 8),
               Text(
-                "Muhammed Ranan",
+                name,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 22,
@@ -36,7 +64,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 8),
-              Text("Learner", style: TextStyle(color: Colors.white)),
+              Text(email, style: TextStyle(color: Colors.white)),
               SizedBox(height: 20),
               Expanded(
                 child: Container(
@@ -53,7 +81,10 @@ class ProfileScreen extends StatelessWidget {
                       ProfileMenuItem(
                         title: "My Details",
                         icon: Icons.person_outline,
-                        iconColor: Colors.white,
+                        iconColor: Color.fromARGB(255, 26, 40, 86),
+                        onTap: () {
+                          Navigator.pushNamed(context, AppRoutes.myDetails);
+                        },
                       ),
                       Divider(height: 1, indent: 30, endIndent: 30),
                       ProfileMenuItem(

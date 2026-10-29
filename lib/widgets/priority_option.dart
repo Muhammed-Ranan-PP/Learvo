@@ -5,17 +5,24 @@ class PriorityOption extends StatelessWidget {
   final Color backgroundColor;
   final Color borderColor;
   final Color textColor;
+  final VoidCallback onTap;
+  final bool isSelected;
   const PriorityOption({
     super.key,
     required this.label,
     required this.backgroundColor,
     required this.borderColor,
     required this.textColor,
+    required this.onTap,
+    required this.isSelected,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return InkWell(
+      onTap: onTap,
+      child: 
+    Container(
       height: 40,
       width: 105,
       alignment: Alignment.center,
@@ -28,6 +35,7 @@ class PriorityOption extends StatelessWidget {
         label,
         style: TextStyle(color: textColor, fontWeight: FontWeight.bold),
       ),
+    )
     );
   }
 }

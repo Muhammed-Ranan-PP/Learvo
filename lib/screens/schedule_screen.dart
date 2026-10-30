@@ -57,6 +57,8 @@ class ScheduleScreen extends StatelessWidget {
                   icon: Icons.calculate_outlined,
                   iconColor: Color.fromARGB(255, 22, 139, 255),
                   statusColor: Color.fromARGB(255, 22, 163, 74),
+                  isCompleted: false,
+onTap: () {},
                 ),
                 SizedBox(height: 12),
                 TaskCard(
@@ -65,6 +67,8 @@ class ScheduleScreen extends StatelessWidget {
                   icon: Icons.biotech,
                   iconColor: Color.fromARGB(255, 139, 92, 246),
                   statusColor: Color.fromARGB(255, 203, 213, 225),
+                  isCompleted: false,
+onTap: () {},
                 ),
                 SizedBox(height: 12),
                 TaskCard(
@@ -73,6 +77,8 @@ class ScheduleScreen extends StatelessWidget {
                   icon: Icons.menu_book_outlined,
                   iconColor: Color.fromARGB(255, 220, 38, 38),
                   statusColor: Color.fromARGB(255, 203, 213, 225),
+                  isCompleted: false,
+onTap: () {},
                 ),
                 SizedBox(height: 12),
                 TaskCard(
@@ -81,6 +87,8 @@ class ScheduleScreen extends StatelessWidget {
                   icon: Icons.science_outlined,
                   iconColor: Color.fromARGB(255, 234, 179, 8),
                   statusColor: Color.fromARGB(255, 203, 213, 225),
+                  isCompleted: false,
+onTap: () {},
                 ),
                 SizedBox(height: 32),
                 Container(

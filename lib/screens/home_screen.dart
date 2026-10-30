@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:learvo/routes/app_routes.dart';
 import 'package:learvo/widgets/bottom_nav_bar.dart';
-import 'package:learvo/widgets/task_card.dart';
+import 'package:learvo/widgets/task_list.dart';
+import 'package:learvo/services/home_services.dart';
+import 'package:learvo/services/task_services.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:learvo/models/task_model.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -11,6 +15,25 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final HomeServices homeServices = HomeServices();
+  final TaskServices taskServices = TaskServices();
+  String userName = "Learvo user";
+  Future<void> loadUserName() async {
+    String? name = await homeServices.getUserName();
+
+    if (name != null) {
+      setState(() {
+        userName = name;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadUserName();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Good Morning",
+                            homeServices.getGreeting(),
                             style: TextStyle(
                               fontSize: 16,
                               color: Color.fromARGB(255, 100, 116, 139),
@@ -36,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           SizedBox(height: 4),
                           Text(
-                            "Muhammed Ranan",
+                            userName,
                             style: TextStyle(
                               fontSize: 24,
                               color: Color.fromARGB(255, 26, 40, 86),
@@ -45,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           SizedBox(height: 4),
                           Text(
-                            "Friday, 09 October",
+                            homeServices.getFormattedDate(),
                             style: TextStyle(
                               fontSize: 14,
                               color: Color.fromARGB(255, 100, 116, 139),
@@ -68,82 +91,112 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               Padding(
                 padding: EdgeInsets.all(8.0),
-                child: Container(
-                  width: double.infinity,
-                  height: 180,
-                  decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 26, 40, 86),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(left: 25, top: 15),
-                        child: Text(
-                          "Today's Progress",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+
+                child: ValueListenableBuilder(
+                  valueListenable: Hive.box<Task>('tasks').listenable(),
+                  builder: (context, box, child) {
+                    int completedTasks = taskServices.getCompletedTasks();
+                    int totalTasks = taskServices.getTotalTasks();
+                    double progress = taskServices.getProgress();
+                    int percentage = (progress * 100).toInt();
+                    return Container(
+                      width: double.infinity,
+                      height: 180,
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 26, 40, 86),
+                        borderRadius: BorderRadius.circular(16),
                       ),
-                      Row(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(left: 30, top: 20),
-                            child: SizedBox(
-                              width: 85,
-                              height: 85,
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  CircularProgressIndicator(
-                                    value: 0.65,
-                                    strokeWidth: 6.5,
-                                    constraints: BoxConstraints.expand(),
-                                    color: Color.fromARGB(255, 139, 92, 246),
-                                  ),
-                                  Text(
-                                    "65%",
-                                    style: TextStyle(
-                                      color: Color.fromARGB(255, 255, 255, 255),
-                                      fontSize: 19,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
+                            padding: EdgeInsets.only(left: 25, top: 15),
+                            child: Text(
+                              "Today's Progress",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),
-                          Expanded(
-                            child: Column(
-                              children: [
-                                Text(
-                                  "3 of 5 tasks completed",
-                                  style: TextStyle(
-                                    color: Color.fromARGB(255, 255, 255, 255),
-                                    fontSize: 19,
-                                    fontWeight: FontWeight.bold,
+                          Row(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(left: 30, top: 20),
+                                child: SizedBox(
+                                  width: 85,
+                                  height: 85,
+                                  child: Stack(
+                                    alignment: Alignment.center,
+                                    children: [
+                                      CircularProgressIndicator(
+                                        value: progress,
+                                        strokeWidth: 6.5,
+                                        constraints: BoxConstraints.expand(),
+                                        color: Color.fromARGB(
+                                          255,
+                                          139,
+                                          92,
+                                          246,
+                                        ),
+                                      ),
+                                      Text(
+                                        "$percentage%",
+                                        style: TextStyle(
+                                          color: Color.fromARGB(
+                                            255,
+                                            255,
+                                            255,
+                                            255,
+                                          ),
+                                          fontSize: 19,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                                SizedBox(height: 5),
-                                Text(
-                                  "Keep going! you're doing great",
-                                  style: TextStyle(
-                                    color: Color.fromARGB(255, 209, 213, 219),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                              ),
+                              Expanded(
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      "$completedTasks of $totalTasks tasks completed",
+                                      style: TextStyle(
+                                        color: Color.fromARGB(
+                                          255,
+                                          255,
+                                          255,
+                                          255,
+                                        ),
+                                        fontSize: 19,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SizedBox(height: 5),
+                                    Text(
+                                      "Keep going! you're doing great",
+                                      style: TextStyle(
+                                        color: Color.fromARGB(
+                                          255,
+                                          209,
+                                          213,
+                                          219,
+                                        ),
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                    ],
-                  ),
+                    );
+                  },
                 ),
               ),
               Padding(
@@ -171,37 +224,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               SizedBox(height: 10),
-              TaskCard(
-                title: "Maths - Chapter 4",
-                time: "09:00 AM - 10:30 AM",
-                icon: Icons.calculate_outlined,
-                iconColor: Color.fromARGB(255, 22, 139, 255),
-                statusColor: Color.fromARGB(255, 22, 163, 74),
-              ),
-              SizedBox(height: 2),
-              TaskCard(
-                title: "Physics - Numericals",
-                time: "11:00 AM - 12:00 PM",
-                icon: Icons.biotech,
-                iconColor: Color.fromARGB(255, 139, 92, 246),
-                statusColor: Color.fromARGB(255, 203, 213, 225),
-              ),
-              SizedBox(height: 2),
-              TaskCard(
-                title: "English - Essay Writing",
-                time: "02:00 PM - 03:00 PM",
-                icon: Icons.menu_book_outlined,
-                iconColor: Color.fromARGB(255, 220, 38, 38),
-                statusColor: Color.fromARGB(255, 203, 213, 225),
-              ),
-              SizedBox(height: 2),
-              TaskCard(
-                title: "Chemistry - Revision",
-                time: "05:00 PM - 06:00 PM",
-                icon: Icons.science_outlined,
-                iconColor: Color.fromARGB(255, 234, 179, 8),
-                statusColor: Color.fromARGB(255, 203, 213, 225),
-              ),
+              TaskList(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

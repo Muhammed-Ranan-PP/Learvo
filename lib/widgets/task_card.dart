@@ -6,6 +6,8 @@ class TaskCard extends StatelessWidget {
   final IconData icon;
   final Color iconColor;
   final Color statusColor;
+  final bool isCompleted;
+  final VoidCallback onTap;
 
   const TaskCard({
     super.key,
@@ -14,13 +16,20 @@ class TaskCard extends StatelessWidget {
     required this.icon,
     required this.iconColor,
     required this.statusColor,
+    required this.isCompleted,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-      child: Container(
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(12),
+        child: 
+      
+      Container(
         height: 58,
         padding: EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
@@ -50,6 +59,9 @@ class TaskCard extends StatelessWidget {
                       color: Color.fromARGB(255, 26, 40, 86),
                       fontSize: 12,
                       fontWeight: FontWeight.bold,
+                      decoration: isCompleted
+                      ? TextDecoration.lineThrough
+                      :TextDecoration.none,
                     ),
                   ),
                   SizedBox(height: 4),
@@ -73,6 +85,7 @@ class TaskCard extends StatelessWidget {
             ),
           ],
         ),
+      ),
       ),
     );
   }

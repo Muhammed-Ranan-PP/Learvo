@@ -4,21 +4,23 @@ import 'package:learvo/routes/app_routes.dart';
 import 'package:learvo/theme/app_theme.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:learvo/models/task_model.dart';
+import 'package:learvo/models/note_model.dart';
 
-Future<void> main() async{
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(UserAdapter());
   Hive.registerAdapter(TaskAdapter());
-  await Hive.openBox<User>('users');
-  await Hive.openBox<Task>('tasks');
+  Hive.registerAdapter(NoteAdapter());
+  await Hive.openBox<User>("users");
+  await Hive.openBox<Task>("tasks");
+  await Hive.openBox<Note>("notes");
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

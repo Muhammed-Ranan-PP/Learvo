@@ -5,6 +5,7 @@ class NoteCard extends StatelessWidget {
   final String details;
   final IconData icon;
   final Color iconColor;
+  final VoidCallback onTap;
 
   const NoteCard({
     super.key,
@@ -12,11 +13,15 @@ class NoteCard extends StatelessWidget {
     required this.details,
     required this.icon,
     required this.iconColor,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return InkWell(
+      onTap: onTap,
+      child: 
+    Container(
       height: 66,
       margin: EdgeInsets.only(bottom: 20),
       padding: EdgeInsets.symmetric(horizontal: 10),
@@ -60,6 +65,7 @@ class NoteCard extends StatelessWidget {
           ),
         ],
       ),
+    )
     );
   }
 }

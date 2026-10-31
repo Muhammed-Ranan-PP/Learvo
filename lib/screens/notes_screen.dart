@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:learvo/routes/app_routes.dart';
 import 'package:learvo/widgets/note_card.dart';
 import 'package:learvo/widgets/note_filter.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:learvo/models/task_model.dart';
+import 'package:learvo/services/task_services.dart';
 
-class NotesScreen extends StatelessWidget {
+
+class NotesScreen extends StatefulWidget {
   const NotesScreen({super.key});
 
+  @override
+  State<NotesScreen> createState() => _NotesScreenState();
+}
+
+class _NotesScreenState extends State<NotesScreen> {
+  final TaskServices taskServices = TaskServices();
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,30 +73,35 @@ class NotesScreen extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 32),
-                NoteCard(
-                  label: "Quadric Equations",
-                  details: "Maths. 12 sep 2025",
-                  icon: Icons.calculate_outlined,
-                  iconColor: Color.fromARGB(255, 22, 139, 255),
-                ),
-                NoteCard(
-                  label: "Atomic Structure",
-                  details: "Physics. 10 sep 2025 ",
-                  icon: Icons.biotech,
-                  iconColor: Color.fromARGB(255, 139, 92, 246),
-                ),
-                NoteCard(
-                  label: "Essay Format",
-                  details: "English. 08 sep 2025",
-                  icon: Icons.menu_book_outlined,
-                  iconColor: Color.fromARGB(255, 220, 38, 38),
-                ),
-                NoteCard(
-                  label: "Organic Chemistry",
-                  details: "Chemistry. 05 seo 2025",
-                  icon: Icons.calculate_outlined,
-                  iconColor: Color.fromARGB(255, 22, 139, 255),
-                ),
+          ValueListenableBuilder(
+            valueListenable: Hive.box<Task>("tasks").listenable(),
+             builder: (context,box,child){
+              List<Task>notes = taskServices.getTasksWithNotes();
+              if(notes.isEmpty){
+                return Text("No notes available");
+              }
+              return ListView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: notes.length,
+                itemBuilder: (context,index){
+                  Task task = notes[index];
+
+                  return NoteCard(
+                    label: task.title,
+                     details: "${task.subject}.${task.date}",
+                      icon: Icons.menu_book_outlined,
+                       iconColor: Color.fromARGB(255, 22, 139, 255),
+                       onTap: () {
+                         Navigator.pushNamed(context, AppRoutes.noteDetails,arguments: task);
+                       },
+                       );
+                       
+                }
+                
+                );
+              
+             })
               ],
             ),
           ),

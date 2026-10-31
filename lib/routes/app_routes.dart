@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learvo/models/task_model.dart';
 import 'package:learvo/screens/splash_screen.dart';
 import 'package:learvo/screens/login_screen.dart';
 import 'package:learvo/screens/home_screen.dart';
@@ -9,6 +10,8 @@ import 'package:learvo/screens/notes_screen.dart';
 import 'package:learvo/screens/add_task_screen.dart';
 import 'package:learvo/screens/signup_screens.dart';
 import 'package:learvo/screens/my_details_screen.dart';
+import 'package:learvo/screens/note_details_screen.dart';
+import 'package:learvo/screens/edit_note_screen.dart';
 
 class AppRoutes {
   static String splash = "/";
@@ -21,6 +24,8 @@ class AppRoutes {
   static String addTask = "/addTask";
   static String signUp = "/signUp";
   static String myDetails = "/myDetails";
+  static String noteDetails = "/noteDetails";
+  static String editNote = "/editNote";
   static Map<String, WidgetBuilder> routes = {
     splash: (context) => SplashScreen(),
     login: (context) => LoginScreen(),
@@ -32,5 +37,10 @@ class AppRoutes {
     addTask: (context) => AddTaskScreen(),
     signUp: (context) => SignupScreens(),
     myDetails:(context) => MyDetailsScreen(),
+    noteDetails:(context) {final task = ModalRoute.of(context)!.settings.arguments as Task;
+    return NoteDetailsScreen(task: task);
+    },
+    editNote:(context) {final task = ModalRoute.of(context)!.settings.arguments as Task;
+    return EditScreen(task: task);},
   };
 }

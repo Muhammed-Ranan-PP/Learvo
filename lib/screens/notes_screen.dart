@@ -6,7 +6,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:learvo/models/task_model.dart';
 import 'package:learvo/services/task_services.dart';
 
-
 class NotesScreen extends StatefulWidget {
   const NotesScreen({super.key});
 
@@ -16,7 +15,15 @@ class NotesScreen extends StatefulWidget {
 
 class _NotesScreenState extends State<NotesScreen> {
   final TaskServices taskServices = TaskServices();
-  
+  final TextEditingController searchController = TextEditingController();
+  String searchQuery = "";
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,58 +57,69 @@ class _NotesScreenState extends State<NotesScreen> {
                 ),
                 SizedBox(height: 12),
                 TextField(
+                  controller: searchController,
+                  style: TextStyle(color: Color.fromARGB(255, 26, 40, 86)),
+                  onChanged: (value) {
+                    setState(() {
+                      searchQuery = value.toLowerCase().trim();
+                    });
+                  },
                   decoration: InputDecoration(
                     prefixIcon: Icon(
                       Icons.search,
                       color: Color.fromARGB(255, 26, 40, 86),
                     ),
                     hintText: "Search notes...",
+                    hintStyle: TextStyle(
+                      color: Color.fromARGB(255, 148, 163, 184),
+                    ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
                 ),
                 SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    NoteFilter(label: "All", isSelected: true),
-                    NoteFilter(label: "Maths", isSelected: false),
-                    NoteFilter(label: "Physics", isSelected: false),
-                    NoteFilter(label: "English", isSelected: false),
-                    NoteFilter(label: "Chemistry", isSelected: false),
-                  ],
-                ),
                 SizedBox(height: 32),
-          ValueListenableBuilder(
-            valueListenable: Hive.box<Task>("tasks").listenable(),
-             builder: (context,box,child){
-              List<Task>notes = taskServices.getTasksWithNotes();
-              if(notes.isEmpty){
-                return Text("No notes available");
-              }
-              return ListView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: notes.length,
-                itemBuilder: (context,index){
-                  Task task = notes[index];
+                ValueListenableBuilder(
+                  valueListenable: Hive.box<Task>("tasks").listenable(),
+                  builder: (context, box, child) {
+                    List<Task> notes = taskServices.getTasksWithNotes();
+                    notes = notes.where((task) {
+                      return task.title.toLowerCase().contains(searchQuery) ||
+                          task.subject.toLowerCase().contains(searchQuery) ||
+                          task.notes.toLowerCase().contains(searchQuery);
+                    }).toList();
+                    if (notes.isEmpty) {
+                      return Text(
+                        searchQuery.isEmpty
+                            ? "No notes available"
+                            : "No Matching notes found",
+                      );
+                    }
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: notes.length,
+                      itemBuilder: (context, index) {
+                        Task task = notes[index];
 
-                  return NoteCard(
-                    label: task.title,
-                     details: "${task.subject}.${task.date}",
-                      icon: Icons.menu_book_outlined,
-                       iconColor: Color.fromARGB(255, 22, 139, 255),
-                       onTap: () {
-                         Navigator.pushNamed(context, AppRoutes.noteDetails,arguments: task);
-                       },
-                       );
-                       
-                }
-                
-                );
-              
-             })
+                        return NoteCard(
+                          label: task.title,
+                          details: "${task.subject}.${task.date}",
+                          icon: Icons.menu_book_outlined,
+                          iconColor: Color.fromARGB(255, 22, 139, 255),
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              AppRoutes.noteDetails,
+                              arguments: task,
+                            );
+                          },
+                        );
+                      },
+                    );
+                  },
+                ),
               ],
             ),
           ),

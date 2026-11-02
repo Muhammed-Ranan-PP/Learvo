@@ -212,14 +212,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Text(
-                      "view all",
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 139, 92, 246),
-                        fontSize: 19,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
                   ],
                 ),
               ),

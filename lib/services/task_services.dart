@@ -31,9 +31,6 @@ double getProgress(){
 }
 // Notes
 List<Task>getTasksWithNotes(){
-  
-print("getTasksWithNotes called");
-
     return taskBox.values
       .where((task) => task.notes.trim().isNotEmpty)
       .toList();

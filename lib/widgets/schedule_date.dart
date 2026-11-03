@@ -4,12 +4,14 @@ class ScheduleDate extends StatelessWidget {
   final String day;
   final String date;
   final bool isSelected;
+  final VoidCallback onTap;
 
   const ScheduleDate({
     super.key,
     required this.day,
     required this.date,
     required this.isSelected,
+    required this.onTap,
   });
 
   @override
@@ -18,7 +20,9 @@ class ScheduleDate extends StatelessWidget {
         ? Colors.white
         : Color.fromARGB(255, 26, 40, 86);
 
-    return Container(
+    return GestureDetector(onTap: onTap,
+    child: 
+    Container(
       width: 40,
       height: 60,
       padding: EdgeInsets.symmetric(vertical: 8),
@@ -37,6 +41,7 @@ class ScheduleDate extends StatelessWidget {
           ),
         ],
       ),
+    )
     );
   }
 }

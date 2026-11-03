@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:learvo/widgets/schedule_date.dart';
 import 'package:learvo/widgets/task_card.dart';
@@ -17,11 +18,48 @@ class ScheduleScreen extends StatefulWidget {
 class _ScheduleScreenState extends State<ScheduleScreen> {
   DateTime selectedDate = DateTime.now();
   final TaskServices taskServices = TaskServices();
+
+  List<DateTime> getWeekDates() {
+    DateTime firstDay = selectedDate.subtract(
+      Duration(days: selectedDate.weekday - 1),
+    );
+
+    return List.generate(7, (index) => firstDay.add(Duration(days: index)));
+  }
+
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: Hive.box<Task>("tasks").listenable(),
       builder: (context, box, child) {
+        List<Task> selectedTasks = [];
+
+        for (var task in taskServices.taskBox.values) {
+          DateTime taskDate;
+
+          if (task.date.length == 8 && task.date[2] == "-") {
+            taskDate = DateTime(
+              2000 + int.parse(task.date.substring(6, 8)),
+              int.parse(task.date.substring(3, 5)),
+              int.parse(task.date.substring(0, 2)),
+            );
+          } else if (task.date.length == 10 && task.date[2] == "/") {
+            taskDate = DateTime(
+              int.parse(task.date.substring(6, 10)),
+              int.parse(task.date.substring(3, 5)),
+              int.parse(task.date.substring(0, 2)),
+            );
+          } else {
+            continue;
+          }
+
+          if (taskDate.year == selectedDate.year &&
+              taskDate.month == selectedDate.month &&
+              taskDate.day == selectedDate.day) {
+            selectedTasks.add(task);
+          }
+        }
+
         return Scaffold(
           body: SingleChildScrollView(
             child: SafeArea(
@@ -56,60 +94,59 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                     SizedBox(height: 32),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ScheduleDate(day: "Mon", date: "15", isSelected: false),
-                        ScheduleDate(day: "Tue", date: "16", isSelected: true),
-                        ScheduleDate(day: "Wed", date: "17", isSelected: false),
-                        ScheduleDate(
-                          day: "Thur",
-                          date: "18",
-                          isSelected: false,
-                        ),
-                        ScheduleDate(day: "Fri", date: "19", isSelected: false),
-                        ScheduleDate(day: "Sat", date: "20", isSelected: false),
-                        ScheduleDate(day: "Sun", date: "21", isSelected: false),
-                      ],
+                      children: getWeekDates().map((date) {
+                        List<String> days = [
+                          "Mon",
+                          "Tue",
+                          "Wed",
+                          "Thur",
+                          "Fri",
+                          "Sat",
+                          "Sun",
+                        ];
+
+                        return ScheduleDate(
+                          day: days[date.weekday - 1],
+                          date: date.day.toString(),
+                          isSelected: date.day == selectedDate.day &&
+                              date.month == selectedDate.month &&
+                              date.year == selectedDate.year,
+                          onTap: () {
+                            setState(() {
+                              selectedDate = date;
+                            });
+                          },
+                        );
+                      }).toList(),
                     ),
                     SizedBox(height: 32),
-                    TaskCard(
-                      title: "Maths - Chapter 4",
-                      time: "09:00 AM - 10:30 AM",
-                      icon: Icons.calculate_outlined,
-                      iconColor: Color.fromARGB(255, 22, 139, 255),
-                      statusColor: Color.fromARGB(255, 22, 163, 74),
-                      isCompleted: false,
-                      onTap: () {},
-                    ),
-                    SizedBox(height: 12),
-                    TaskCard(
-                      title: "Physics - Numericals",
-                      time: "11:00 AM - 12:00 PM",
-                      icon: Icons.biotech,
-                      iconColor: Color.fromARGB(255, 139, 92, 246),
-                      statusColor: Color.fromARGB(255, 203, 213, 225),
-                      isCompleted: false,
-                      onTap: () {},
-                    ),
-                    SizedBox(height: 12),
-                    TaskCard(
-                      title: "English - Essay Writing",
-                      time: "02:00 PM - 03:00 PM",
-                      icon: Icons.menu_book_outlined,
-                      iconColor: Color.fromARGB(255, 220, 38, 38),
-                      statusColor: Color.fromARGB(255, 203, 213, 225),
-                      isCompleted: false,
-                      onTap: () {},
-                    ),
-                    SizedBox(height: 12),
-                    TaskCard(
-                      title: "Chemistry - Revision",
-                      time: "05:00 PM - 06:00 PM",
-                      icon: Icons.science_outlined,
-                      iconColor: Color.fromARGB(255, 234, 179, 8),
-                      statusColor: Color.fromARGB(255, 203, 213, 225),
-                      isCompleted: false,
-                      onTap: () {},
-                    ),
+                    if (selectedTasks.isEmpty)
+                      Padding(
+                        padding: EdgeInsets.all(20),
+                        child: Text(
+                          "No tasks scheduled for this day",
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 100, 116, 139),
+                          ),
+                        ),
+                      )
+                    else
+                      ...selectedTasks.map((task) {
+                        return Padding(
+                          padding: EdgeInsets.only(bottom: 12),
+                          child: TaskCard(
+                            title: "${task.subject} - ${task.title}",
+                            time: task.time,
+                            icon: Icons.menu_book_outlined,
+                            iconColor: Color.fromARGB(255, 139, 92, 246),
+                            statusColor: task.isCompleted
+                                ? Color.fromARGB(255, 22, 163, 74)
+                                : Color.fromARGB(255, 203, 213, 225),
+                            isCompleted: task.isCompleted,
+                            onTap: () {},
+                          ),
+                        );
+                      }),
                     SizedBox(height: 32),
                     Container(
                       height: 60,
@@ -134,7 +171,7 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                                   ),
                                 ),
                                 Text(
-                                  "4",
+                                  selectedTasks.length.toString(),
                                   style: TextStyle(
                                     color: Color.fromARGB(255, 26, 40, 86),
                                     fontSize: 20,
@@ -174,3 +211,4 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
     );
   }
 }
+

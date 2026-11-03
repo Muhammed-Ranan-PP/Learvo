@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:learvo/routes/app_routes.dart';
 import 'package:learvo/widgets/note_card.dart';
-import 'package:learvo/widgets/note_filter.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:learvo/models/task_model.dart';
 import 'package:learvo/services/task_services.dart';

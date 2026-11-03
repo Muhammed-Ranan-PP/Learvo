@@ -5,13 +5,17 @@ class TaskInput extends StatelessWidget {
   final String hint;
   final IconData icon;
   final TextEditingController controller;
+  final bool readOnly;
+  final VoidCallback? onTap;
 
   const TaskInput({
     super.key,
     required this.label,
     required this.hint,
     required this.icon,
-    required this.controller
+    required this.controller,
+   this.readOnly = false,
+   this.onTap,
   });     
 
   @override
@@ -30,6 +34,8 @@ class TaskInput extends StatelessWidget {
         SizedBox(height: 8),
         TextField(
           controller: controller,
+          readOnly: readOnly,
+          onTap: onTap,
           decoration: InputDecoration(
             hintText: hint,
             prefixIcon: Icon(icon),

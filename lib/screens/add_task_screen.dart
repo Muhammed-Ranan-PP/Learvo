@@ -29,6 +29,22 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
     super.dispose();
   }
 
+  // Date Picker Function
+Future<void>selectDate()async{
+  DateTime? pickedDate = await showDatePicker(
+    context : context,
+    initialDate : DateTime.now(),
+    firstDate : DateTime(2020),
+    lastDate : DateTime(2035),
+    );
+    if(pickedDate != null){
+      dateController.text=
+      "${pickedDate.day.toString().padLeft(2,"0")}/"
+      "${pickedDate.month.toString().padLeft(2,"0")}/"
+      "${pickedDate.year}";
+    }
+}
+
   Future<void> saveTask() async {
     if (titleController.text.trim().isEmpty ||
         subjectController.text.trim().isEmpty ||
@@ -111,6 +127,8 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   hint: "12 Oct 2026 ",
                   icon: Icons.event_available_outlined,
                   controller: dateController,
+                  readOnly:true,
+                  onTap: selectDate,
                 ),
                 SizedBox(height: 17),
                 TaskInput(

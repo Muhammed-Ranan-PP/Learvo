@@ -40,6 +40,20 @@ class _EditScreenState extends State<EditScreen> {
     notesController.dispose();
     super.dispose();
   }
+  Future<void>selectDate()async{
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+       firstDate: DateTime(2020),
+        lastDate: DateTime(2035)
+        );
+        if(pickedDate != null){
+          dateController.text = 
+          "${pickedDate.day.toString().padLeft(2,"0")}/"
+          "${pickedDate.month.toString().padLeft(2,"0")}/"
+          "${pickedDate.year}";
+        }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +70,7 @@ class _EditScreenState extends State<EditScreen> {
                   hint: "Enter task title",
                   icon: Icons.description_outlined,
                   controller: titleController,
+                  
                 ),
                 SizedBox(height: 17),
 
@@ -71,6 +86,8 @@ class _EditScreenState extends State<EditScreen> {
                   hint: "Enter date",
                   icon: Icons.event_available_outlined,
                   controller: dateController,
+                  readOnly: true,
+                  onTap: selectDate,
                 ),
                 SizedBox(height: 17),
                 TaskInput(

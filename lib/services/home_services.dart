@@ -3,6 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:learvo/models/user_model.dart';
 
 class HomeServices {
+  // Logged in user's name
   Future<String?> getUserName() async {
     final prefs = await SharedPreferences.getInstance();
     String? email = prefs.getString("userEmail");

@@ -3,23 +3,24 @@ part 'task_model.g.dart';
 
 @HiveType(typeId: 1)
 class Task extends HiveObject {
+  
   @HiveField(0)
-   String title;
+  String title;
 
   @HiveField(1)
-   String subject;
+  String subject;
 
   @HiveField(2)
-   String date;
+  String date;
 
   @HiveField(3)
-   String time;
+  String time;
 
   @HiveField(4)
-   String priority;
+  String priority;
 
   @HiveField(5)
-   String notes;
+  String notes;
 
   @HiveField(6)
   bool isCompleted;

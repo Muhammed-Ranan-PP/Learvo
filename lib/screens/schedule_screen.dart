@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:learvo/widgets/schedule_date.dart';
 import 'package:learvo/widgets/task_card.dart';
@@ -108,7 +107,8 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                         return ScheduleDate(
                           day: days[date.weekday - 1],
                           date: date.day.toString(),
-                          isSelected: date.day == selectedDate.day &&
+                          isSelected:
+                              date.day == selectedDate.day &&
                               date.month == selectedDate.month &&
                               date.year == selectedDate.year,
                           onTap: () {
@@ -211,4 +211,3 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
     );
   }
 }
-

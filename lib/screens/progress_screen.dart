@@ -142,7 +142,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
                                     "This Year",
                                     style: TextStyle(
                                       color: selectedPeriod == "This Year"
-                                         ? Colors.white
+                                          ? Colors.white
                                           : Color.fromARGB(255, 148, 163, 184),
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -206,14 +206,6 @@ class _ProgressScreenState extends State<ProgressScreen> {
                           style: TextStyle(
                             color: Color.fromARGB(255, 26, 40, 86),
                             fontSize: 19,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        Text(
-                          "View all ",
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 139, 92, 246),
-                            fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
                         ),

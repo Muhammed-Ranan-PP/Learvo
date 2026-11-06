@@ -67,75 +67,71 @@ class TaskServices {
   }
 
   // week month year
- List<Task> getTasksByPeriod(String period) {
-  List<Task> filteredTasks = [];
-  DateTime today = DateTime.now();
+  List<Task> getTasksByPeriod(String period) {
+    List<Task> filteredTasks = [];
+    DateTime today = DateTime.now();
 
-  for (var task in taskBox.values) {
-    DateTime taskDate;
+    for (var task in taskBox.values) {
+      DateTime taskDate;
 
-    if (task.date.length == 10 && task.date[2] == "/") {
-      taskDate = DateTime(
-        int.parse(task.date.substring(6, 10)),
-        int.parse(task.date.substring(3, 5)),
-        int.parse(task.date.substring(0, 2)),
-      );
-    } else if (task.date.length == 8 && task.date[2] == "-") {
-      taskDate = DateTime(
-        2000 + int.parse(task.date.substring(6, 8)),
-        int.parse(task.date.substring(3, 5)),
-        int.parse(task.date.substring(0, 2)),
-      );
-    } else {
-      continue;
-    }
-
-    if (period == "This Week") {
-      DateTime startOfWeek = today.subtract(
-        Duration(days: today.weekday - 1),
-      );
-
-      DateTime endOfWeek = startOfWeek.add(Duration(days: 6));
-
-      if (!taskDate.isBefore(DateTime(
-            startOfWeek.year,
-            startOfWeek.month,
-            startOfWeek.day,
-          )) &&
-          !taskDate.isAfter(DateTime(
-            endOfWeek.year,
-            endOfWeek.month,
-            endOfWeek.day,
-          ))) {
-        filteredTasks.add(task);
+      if (task.date.length == 10 && task.date[2] == "/") {
+        taskDate = DateTime(
+          int.parse(task.date.substring(6, 10)),
+          int.parse(task.date.substring(3, 5)),
+          int.parse(task.date.substring(0, 2)),
+        );
+      } else if (task.date.length == 8 && task.date[2] == "-") {
+        taskDate = DateTime(
+          2000 + int.parse(task.date.substring(6, 8)),
+          int.parse(task.date.substring(3, 5)),
+          int.parse(task.date.substring(0, 2)),
+        );
+      } else {
+        continue;
       }
-    } else if (period == "This Month") {
-      if (taskDate.year == today.year &&
-          taskDate.month == today.month) {
-        filteredTasks.add(task);
-      }
-    } else if (period == "This Year") {
-      if (taskDate.year == today.year) {
-        filteredTasks.add(task);
+
+      if (period == "This Week") {
+        DateTime startOfWeek = today.subtract(
+          Duration(days: today.weekday - 1),
+        );
+
+        DateTime endOfWeek = startOfWeek.add(Duration(days: 6));
+
+        if (!taskDate.isBefore(
+              DateTime(startOfWeek.year, startOfWeek.month, startOfWeek.day),
+            ) &&
+            !taskDate.isAfter(
+              DateTime(endOfWeek.year, endOfWeek.month, endOfWeek.day),
+            )) {
+          filteredTasks.add(task);
+        }
+      } else if (period == "This Month") {
+        if (taskDate.year == today.year && taskDate.month == today.month) {
+          filteredTasks.add(task);
+        }
+      } else if (period == "This Year") {
+        if (taskDate.year == today.year) {
+          filteredTasks.add(task);
+        }
       }
     }
+
+    return filteredTasks;
   }
 
-  return filteredTasks;
-}
-double getSubjectProgressByPeriod(String subject,String period){
-  List<Task>periodTasks = getTasksByPeriod(period);
-  int total = 0;
-  int completed = 0;
-  for(var task in periodTasks){
-    if(task.subject == subject){
-      total++;
-      if(task.isCompleted){
-        completed++;
+  double getSubjectProgressByPeriod(String subject, String period) {
+    List<Task> periodTasks = getTasksByPeriod(period);
+    int total = 0;
+    int completed = 0;
+    for (var task in periodTasks) {
+      if (task.subject == subject) {
+        total++;
+        if (task.isCompleted) {
+          completed++;
+        }
       }
     }
+    if (total == 0) return 0.0;
+    return completed / total;
   }
-  if(total==0)return 0.0;
-  return completed / total;
-}
 }

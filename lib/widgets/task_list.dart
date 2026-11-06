@@ -15,39 +15,38 @@ class _TaskListState extends State<TaskList> {
   final TaskServices taskServices = TaskServices();
   @override
   Widget build(BuildContext context) {
-    return  ValueListenableBuilder(valueListenable: Hive.box<Task>("tasks").listenable(),
-               builder: (context,box,child){
-                if(box.isEmpty){
-                  return Padding(padding: EdgeInsets.all(20),
-                  child: Text("No tasks added yet"),
-                  );
-                }
-                List <Widget> taskWidgets = [];
-                for(var task in box.values){
-                  taskWidgets.add(
-                    Padding(padding: EdgeInsets.only(bottom: 5),
-                    child: TaskCard(
-                      title: task.title,
-                       time: task.time,
-                        icon: Icons.task_alt,
-                         iconColor: Color.fromARGB(255, 139, 92, 246),
-                          statusColor: task.isCompleted
-                          ?Color.fromARGB(255, 34, 197, 94)
-                          :Color.fromARGB(255, 203, 213, 225),
-                          isCompleted: task.isCompleted,
-                          onTap: () {
-                            taskServices.toggleTask(task);
-                          },
-                          ),
-                    )
-                  );
-                }
-                return Column(
-                  children: 
-                    taskWidgets,
-                  
-                );
-               }
-               );
+    return ValueListenableBuilder(
+      valueListenable: Hive.box<Task>("tasks").listenable(),
+      builder: (context, box, child) {
+        if (box.isEmpty) {
+          return Padding(
+            padding: EdgeInsets.all(20),
+            child: Text("No tasks added yet"),
+          );
+        }
+        List<Widget> taskWidgets = [];
+        for (var task in box.values) {
+          taskWidgets.add(
+            Padding(
+              padding: EdgeInsets.only(bottom: 5),
+              child: TaskCard(
+                title: task.title,
+                time: task.time,
+                icon: Icons.task_alt,
+                iconColor: Color.fromARGB(255, 139, 92, 246),
+                statusColor: task.isCompleted
+                    ? Color.fromARGB(255, 34, 197, 94)
+                    : Color.fromARGB(255, 203, 213, 225),
+                isCompleted: task.isCompleted,
+                onTap: () {
+                  taskServices.toggleTask(task);
+                },
+              ),
+            ),
+          );
+        }
+        return Column(children: taskWidgets);
+      },
+    );
   }
 }

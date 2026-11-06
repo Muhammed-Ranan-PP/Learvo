@@ -11,30 +11,31 @@ class ProfileScreen extends StatefulWidget {
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
-  
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
   String name = "";
   String email = "";
-  Future<void>getUserdetails()async{
+  Future<void> getUserdetails() async {
     final prefs = await SharedPreferences.getInstance();
-    email = prefs.getString("userEmail")?? "";
+    email = prefs.getString("userEmail") ?? "";
     var userBox = Hive.box<User>("users");
-    for(var user in userBox.values){
-      if(user.email == email){
-      setState(() {
-        name = user.name;
-        email = user.email;
-      });
+    for (var user in userBox.values) {
+      if (user.email == email) {
+        setState(() {
+          name = user.name;
+          email = user.email;
+        });
       }
     }
   }
+
   @override
-  void initState(){
+  void initState() {
     super.initState();
     getUserdetails();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

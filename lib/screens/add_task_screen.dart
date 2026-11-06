@@ -30,20 +30,20 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   }
 
   // Date Picker Function
-Future<void>selectDate()async{
-  DateTime? pickedDate = await showDatePicker(
-    context : context,
-    initialDate : DateTime.now(),
-    firstDate : DateTime(2020),
-    lastDate : DateTime(2035),
+  Future<void> selectDate() async {
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2020),
+      lastDate: DateTime(2035),
     );
-    if(pickedDate != null){
-      dateController.text=
-      "${pickedDate.day.toString().padLeft(2,"0")}/"
-      "${pickedDate.month.toString().padLeft(2,"0")}/"
-      "${pickedDate.year}";
+    if (pickedDate != null) {
+      dateController.text =
+          "${pickedDate.day.toString().padLeft(2, "0")}/"
+          "${pickedDate.month.toString().padLeft(2, "0")}/"
+          "${pickedDate.year}";
     }
-}
+  }
 
   Future<void> saveTask() async {
     if (titleController.text.trim().isEmpty ||
@@ -57,16 +57,18 @@ Future<void>selectDate()async{
     }
     Task newTask = Task(
       title: titleController.text.trim(),
-       subject: subjectController.text.trim(),
-        date: dateController.text.trim(),
-         time: timeController.text.trim(),
-          priority: selectedPriority,
-           notes: notesController.text.trim());
-           await taskServices.addTask(newTask);
-           if(!mounted)return;
+      subject: subjectController.text.trim(),
+      date: dateController.text.trim(),
+      time: timeController.text.trim(),
+      priority: selectedPriority,
+      notes: notesController.text.trim(),
+    );
+    await taskServices.addTask(newTask);
+    if (!mounted) return;
 
-           ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Task saved Sucessfully")));
-           Navigator.pop(context);
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text("Task saved Sucessfully")));
+    Navigator.pop(context);
   }
 
   @override
@@ -127,7 +129,7 @@ Future<void>selectDate()async{
                   hint: "12 Oct 2026 ",
                   icon: Icons.event_available_outlined,
                   controller: dateController,
-                  readOnly:true,
+                  readOnly: true,
                   onTap: selectDate,
                 ),
                 SizedBox(height: 17),
@@ -219,9 +221,8 @@ Future<void>selectDate()async{
                   width: double.infinity,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: 
-                      saveTask,
-              
+                    onPressed: saveTask,
+
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color.fromARGB(255, 26, 40, 86),
                       foregroundColor: Colors.white,

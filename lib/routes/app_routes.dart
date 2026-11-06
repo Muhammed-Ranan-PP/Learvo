@@ -36,11 +36,14 @@ class AppRoutes {
     notes: (context) => NotesScreen(),
     addTask: (context) => AddTaskScreen(),
     signUp: (context) => SignupScreens(),
-    myDetails:(context) => MyDetailsScreen(),
-    noteDetails:(context) {final task = ModalRoute.of(context)!.settings.arguments as Task;
-    return NoteDetailsScreen(task: task);
+    myDetails: (context) => MyDetailsScreen(),
+    noteDetails: (context) {
+      final task = ModalRoute.of(context)!.settings.arguments as Task;
+      return NoteDetailsScreen(task: task);
     },
-    editNote:(context) {final task = ModalRoute.of(context)!.settings.arguments as Task;
-    return EditScreen(task: task);},
+    editNote: (context) {
+      final task = ModalRoute.of(context)!.settings.arguments as Task;
+      return EditScreen(task: task);
+    },
   };
 }

@@ -16,30 +16,37 @@ class ProgressScreen extends StatefulWidget {
 class _ProgressScreenState extends State<ProgressScreen> {
   final TaskServices taskServices = TaskServices();
   String selectedPeriod = "This Week";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ValueListenableBuilder(
         valueListenable: Hive.box<Task>("tasks").listenable(),
         builder: (context, box, child) {
-          List<Task> periodTasks = taskServices.getTasksByPeriod(
-            selectedPeriod,
-          );
+          List<Task> periodTasks =
+              taskServices.getTasksByPeriod(selectedPeriod);
+
           int totalTasks = periodTasks.length;
           int completedTasks = 0;
+
           for (var task in periodTasks) {
             if (task.isCompleted) {
               completedTasks++;
             }
           }
+
           int pendingTasks = totalTasks - completedTasks;
-          double progress = totalTasks == 0 ? 0.0 : completedTasks / totalTasks;
+          double progress =
+              totalTasks == 0 ? 0.0 : completedTasks / totalTasks;
+
           List<String> subjects = [];
+
           for (var task in periodTasks) {
             if (!subjects.contains(task.subject)) {
               subjects.add(task.subject);
             }
           }
+
           return SafeArea(
             child: SingleChildScrollView(
               child: Padding(
@@ -55,7 +62,9 @@ class _ProgressScreenState extends State<ProgressScreen> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
+
                     SizedBox(height: 20),
+
                     Container(
                       padding: EdgeInsets.all(4),
                       decoration: BoxDecoration(
@@ -93,6 +102,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
                               ),
                             ),
                           ),
+
                           Expanded(
                             child: GestureDetector(
                               onTap: () {
@@ -122,6 +132,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
                               ),
                             ),
                           ),
+
                           Expanded(
                             child: GestureDetector(
                               onTap: () {
@@ -154,50 +165,63 @@ class _ProgressScreenState extends State<ProgressScreen> {
                         ],
                       ),
                     ),
+
                     SizedBox(height: 24),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: 100,
-                          height: 100,
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              CircularProgressIndicator(
-                                value: progress,
-                                strokeWidth: 6.5,
-                                constraints: BoxConstraints.expand(),
-                                color: Color.fromARGB(255, 139, 92, 246),
-                              ),
-                              Text(
-                                "${(progress * 100).round()}%",
-                                style: TextStyle(
-                                  color: Color.fromARGB(255, 26, 40, 86),
-                                  fontSize: 19,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(width: 94),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+
+                    LayoutBuilder(
+                      builder: (context, constraints) {
+                        return Row(
+                          mainAxisAlignment: constraints.maxWidth > 600
+                              ? MainAxisAlignment.center
+                              : MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text("🟢  Completed"),
-                            Text(" $completedTasks"),
-                            SizedBox(height: 12),
-                            Text("🔴  Pending"),
-                            Text(" $pendingTasks"),
-                            SizedBox(height: 12),
-                            Text("🔵  Total Tasks"),
-                            Text(" $totalTasks"),
+                            SizedBox(
+                              width: 100,
+                              height: 100,
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  CircularProgressIndicator(
+                                    value: progress,
+                                    strokeWidth: 6.5,
+                                    constraints: BoxConstraints.expand(),
+                                    color: Color.fromARGB(255, 139, 92, 246),
+                                  ),
+                                  Text(
+                                    "${(progress * 100).round()}%",
+                                    style: TextStyle(
+                                      color: Color.fromARGB(255, 26, 40, 86),
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+
+                            SizedBox(width: 94),
+
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("🟢  Completed"),
+                                Text(" $completedTasks"),
+                                SizedBox(height: 12),
+                                Text("🔴  Pending"),
+                                Text(" $pendingTasks"),
+                                SizedBox(height: 12),
+                                Text("🔵  Total Tasks"),
+                                Text(" $totalTasks"),
+                              ],
+                            ),
                           ],
-                        ),
-                      ],
+                        );
+                      },
                     ),
+
                     SizedBox(height: 50),
+
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -211,21 +235,23 @@ class _ProgressScreenState extends State<ProgressScreen> {
                         ),
                       ],
                     ),
+
                     SizedBox(height: 25),
 
                     Wrap(
                       spacing: 12,
                       runSpacing: 12,
                       children: subjects.map((subject) {
-                        double subjectProgress = taskServices
-                            .getSubjectProgressByPeriod(
-                              subject,
-                              selectedPeriod,
-                            );
+                        double subjectProgress =
+                            taskServices.getSubjectProgressByPeriod(
+                          subject,
+                          selectedPeriod,
+                        );
 
                         return SubjectPerformance(
                           subject: subject,
-                          percentage: "${(subjectProgress * 100).round()}%",
+                          percentage:
+                              "${(subjectProgress * 100).round()}%",
                           icon: Icons.menu_book_outlined,
                           iconColor: Color.fromARGB(255, 22, 139, 255),
                         );
@@ -233,6 +259,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
                     ),
 
                     SizedBox(height: 62),
+
                     Container(
                       width: double.infinity,
                       padding: EdgeInsets.all(12),
@@ -250,7 +277,9 @@ class _ProgressScreenState extends State<ProgressScreen> {
                             color: Color.fromARGB(255, 139, 92, 246),
                             size: 30,
                           ),
+
                           SizedBox(width: 16),
+
                           Expanded(
                             child: Column(
                               children: [
@@ -264,10 +293,15 @@ class _ProgressScreenState extends State<ProgressScreen> {
                               ],
                             ),
                           ),
-                          Icon(Icons.chevron_right, color: Colors.white),
+
+                          Icon(
+                            Icons.chevron_right,
+                            color: Colors.white,
+                          ),
                         ],
                       ),
                     ),
+
                   ],
                 ),
               ),
